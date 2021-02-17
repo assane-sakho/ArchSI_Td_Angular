@@ -1,6 +1,7 @@
 package dao;
 
 import model.impl.Shop;
+import model.impl.Article;
 import model.impl.Category;
 
 import java.util.*;
@@ -66,6 +67,10 @@ public class ShopDAO {
         }
 
         shopHighTech = new Shop(0, "Boutique High tech", "une description", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris", categories);
+  
+        Optional<Category> cleUsbCategory = shopHighTech.getCategory("Clé USB");
+        Article cleUsbSandisk = new Article(0, "clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        shopHighTech.addArticle(cleUsbSandisk);
     }
 
     public static ShopDAO getINSTANCE()
