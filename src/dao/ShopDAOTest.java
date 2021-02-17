@@ -31,7 +31,7 @@ class ShopDAOTest {
         /* Affichage des articles de la catégorie ordinateur */
 
         System.out.println("Affichage des articles de la catégorie Ordinateur: \n");
-        shopHighTech.getArticlesByCategory("Ordinateur").forEach(article ->  System.out.println(article));
+        shopHighTech.getArticlesByCategory(0).forEach(article ->  System.out.println(article));
         
         /* Affichage des articles de la catégorie clé usb */
 

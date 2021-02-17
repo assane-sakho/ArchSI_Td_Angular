@@ -87,17 +87,34 @@ public class Shop extends ComponentImpl implements IShop {
         return categories.stream().filter(c -> c.getChildren().stream().count() == 0).collect(Collectors.toList());
     }
     
+    public Optional<Category> getCategory(Integer categoryId)
+    {
+    	return categories.stream().filter(c -> c.getId() == categoryId).findFirst();
+    }
+    
     public Optional<Category> getCategory(String libelle)
     {
     	return categories.stream().filter(c -> c.getLibelle() == libelle).findFirst();
     }
     
     public List<Article> getArticlesByCategory(Category category) {
-        return articles.stream().filter(c -> c.getCategory() == category).collect(Collectors.toList());
+        return getArticlesByCategory(category.getId());
     }
     
-    public List<Article> getArticlesByCategory(String category) {
-        return articles.stream().filter(c -> c.getCategory().getLibelle() == category).collect(Collectors.toList());
+    public List<Article> getArticlesByCategory(Integer categoryId) {
+    	List<Article> articlesFiltred = new ArrayList();
+    	Optional<Category> c = getCategory(categoryId);
+    	if(c.isPresent())
+    	{
+    		System.out.println(c.get().getLibelle());
+    		articlesFiltred.addAll(articles.stream()
+				    				.filter(article -> article.getCategory().getId() == categoryId || 
+		    								   (article.getCategory().getParent().isPresent() && article.getCategory().getParent().get().getId() == categoryId ))
+				    				.collect(Collectors.toList()));
+
+    	}
+    	
+        return articlesFiltred;
     }
     
     @Override

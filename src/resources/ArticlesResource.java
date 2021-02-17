@@ -26,16 +26,16 @@ public class ArticlesResource {
     Request request;
     
     // Return the list of the articles from a category
-    @Path("{category}")
+    @Path("/category/{category}")
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public List<Article> getArticlesByCategory(@PathParam("category") String category) {
+    public List<Article> getArticlesByCategory(@PathParam("category") Integer categoryId) {
     	
         ShopDAO shopDAO = ShopDAO.getINSTANCE();
         Shop shopHighTech = shopDAO.getBoutique();
         
-        System.out.println(shopHighTech.getArticles().size());
+        System.out.println(shopHighTech.getArticlesByCategory(categoryId));
 
-        return  shopHighTech.getArticles();
+        return  shopHighTech.getArticlesByCategory(categoryId);
     }
 }
