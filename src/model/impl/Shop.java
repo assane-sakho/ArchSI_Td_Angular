@@ -92,6 +92,14 @@ public class Shop extends ComponentImpl implements IShop {
     	return categories.stream().filter(c -> c.getLibelle() == libelle).findFirst();
     }
     
+    public List<Article> getArticlesByCategory(Category category) {
+        return articles.stream().filter(c -> c.getCategory() == category).collect(Collectors.toList());
+    }
+    
+    public List<Article> getArticlesByCategory(String category) {
+        return articles.stream().filter(c -> c.getCategory().getLibelle() == category).collect(Collectors.toList());
+    }
+    
     @Override
     public String toString()
     {

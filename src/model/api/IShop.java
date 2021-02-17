@@ -20,4 +20,7 @@ public interface IShop {
 
     List<Category> getMainCategories();
     List<Category> getSubCategories();
+    
+    List<Article> getArticlesByCategory(Category category);
+
 }

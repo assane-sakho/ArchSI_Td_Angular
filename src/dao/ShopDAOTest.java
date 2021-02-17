@@ -14,19 +14,33 @@ class ShopDAOTest {
 
         System.out.println(shopHighTech);
         
-        Optional<Category> cleUsb = shopHighTech.getCategory("Clé USB");
-        Article cleUSb = new Article(0, "Clé usb 16Go", "Sandisk", 9.99, cleUsb.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        Optional<Category> cleUsbCategory = shopHighTech.getCategory("Clé USB");
+        Article cleUsbSandisk = new Article(0, "clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
         
-        shopHighTech.addArticle(cleUSb);
+        /* Ajout article */
+        shopHighTech.addArticle(cleUsbSandisk);
+        System.out.println("\n\nAffichage des articles: \n");
+        shopHighTech.getArticles().forEach(article ->  System.out.println(article));
+        
+        /* Modification article */
+        cleUsbSandisk.setLibelle("Clé USB 16Go");
+        shopHighTech.updateArticle(cleUsbSandisk);
         System.out.println("Affichage des articles: \n");
         shopHighTech.getArticles().forEach(article ->  System.out.println(article));
         
-        cleUSb.setLibelle("Clé USB 16Go");
-        shopHighTech.updateArticle(cleUSb);
-        System.out.println("Affichage des articles: \n");
-        shopHighTech.getArticles().forEach(article ->  System.out.println(article));
+        /* Affichage des articles de la catégorie ordinateur */
+
+        System.out.println("Affichage des articles de la catégorie Ordinateur: \n");
+        shopHighTech.getArticlesByCategory("Ordinateur").forEach(article ->  System.out.println(article));
         
-        shopHighTech.deleteArticle(cleUSb);
+        /* Affichage des articles de la catégorie clé usb */
+
+        System.out.println("Affichage des articles de la catégorie clé usb: \n");
+        shopHighTech.getArticlesByCategory(cleUsbCategory.get()).forEach(article ->  System.out.println(article));
+        
+        /* Suppression article */
+
+        shopHighTech.deleteArticle(cleUsbSandisk);
         System.out.println("Affichage des articles: \n");
         shopHighTech.getArticles().forEach(article ->  System.out.println(article));
     }
