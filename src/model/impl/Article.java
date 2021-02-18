@@ -1,10 +1,9 @@
 package model.impl;
-import model.api.IArticle;
 
-public class Article extends ComponentImpl implements IArticle{
+public class Article extends ComponentImpl{
     private String brand;
     private Double price;
-    private Category category;
+    protected Category category;
     private String picture;
 
     public Article(int id, String libelle, String brand, Double price, Category category, String picture) {

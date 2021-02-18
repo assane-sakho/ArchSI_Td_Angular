@@ -27,9 +27,7 @@ public class ShopResource {
 	
 	@Context
 	UriInfo uriInfo;
-	 
-	@Context
-	Request request;
+	
 	 
 	@POST
     @Produces(MediaType.TEXT_HTML)
@@ -57,4 +55,20 @@ public class ShopResource {
 		 	infoShop.add(shopHighTech.getContact());
 		 	return infoShop.stream().collect(Collectors.joining(", "));
 	 }
+	 @Context
+	 Request request;
+	 
+	 // Return the list of the articles from a category
+    @Path("/{category}/articles")
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON })
+    public String getArticlesByCategory(@PathParam("category") String categoryLibelle) {
+    	
+        ShopDAO shopDAO = ShopDAO.getINSTANCE();
+        Shop shopHighTech = shopDAO.getBoutique();
+
+        List<Article> articles = shopHighTech.getArticlesByCategory(categoryLibelle);
+
+        return articles.stream().map(article -> article.toString()).collect(Collectors.joining(","));
+    }
 }

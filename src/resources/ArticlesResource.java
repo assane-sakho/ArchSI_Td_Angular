@@ -25,20 +25,6 @@ public class ArticlesResource {
     @Context
     Request request;
     
-    // Return the list of the articles from a category
-    @Path("/category/{category}")
-    @GET
-    @Produces({ MediaType.APPLICATION_JSON })
-    public List<Article> getArticlesByCategory(@PathParam("category") Integer categoryId) {
-    	
-        ShopDAO shopDAO = ShopDAO.getINSTANCE();
-        Shop shopHighTech = shopDAO.getBoutique();
-        
-        System.out.println(shopHighTech.getArticlesByCategory(categoryId));
-
-        return  shopHighTech.getArticlesByCategory(categoryId);
-    }
-    
     @Path("{article}")
     public ArticleResource getArticle(@PathParam("article") Integer id) {
         return new ArticleResource(uriInfo, request, id);

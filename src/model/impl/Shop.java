@@ -1,17 +1,14 @@
 package model.impl;
 
-import model.api.IShop;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Shop extends ComponentImpl implements IShop {
+public class Shop extends ComponentImpl{
     private String description;
     private String address;
     private String contact;
-    private List<Article> articles;
     private List<Category> categories;
     private List<Administrator> admins;
 
@@ -20,60 +17,41 @@ public class Shop extends ComponentImpl implements IShop {
         this.description = description;
         this.address = address;
         this.contact = contact;
-        this.articles = new ArrayList<>();
         this.categories = new ArrayList<>();
         this.admins = new ArrayList<>();
     }
 
-    public Shop addArticles(List<Article> articles)
-    {
-        this.articles.addAll(articles);
-        return this;
-    }
-
-    public Shop deleteArticles(List<Article> articles)
-    {
-        this.articles.removeAll(articles);
-        return this;
-    }
-
     public Shop addArticle(Article article)
     {
-        this.articles.add(article);
+    	article.getCategory().addArticle(article);
         return this;
     }
 
     public Shop updateArticle(Article article)
     {
-        Optional<Article> articleToEdit = this.articles.stream().filter(a -> a.getId().equals(article.getId())).findFirst();
-
-        articleToEdit.ifPresent(value ->
-                value.setLibelle(article.getLibelle())
-                     .setBrand(article.getBrand())
-                     .setPicture(article.getPicture())
-                     .setCategorie(article.getCategory())
-                     .setPrice(article.getPrice()));
-
+    	article.getCategory().updateArticle(article);
         return this;
     }
 
     /*public Shop deleteArticle(Article article)
     {
-        this.articles.remove(article);
+    	article.getCategory().deleteArticle(article);
         return this;
     }*/
     
     public Shop deleteArticle(Integer id)
     {
-    	Optional<Article> article  = articles.stream().filter(a-> a.getId() == id).findFirst();
-    	if(article.isPresent()) {
-            this.articles.remove(article.get());
+    	Optional<Article> optionalArticle  = getArticles().stream().filter(article -> article.getId() == id).findFirst();
+    	if(optionalArticle.isPresent()) {
+    		Article article = optionalArticle.get();
+    		Category category = article.getCategory();
+    		category.deleteArticle(article);
     	}
         return this;
     }
 
     public List<Article> getArticles() {
-        return articles;
+        return categories.stream().flatMap(c -> c.getArticles().stream()).collect(Collectors.toList());
     }
 
     public String getDescription() {
@@ -105,7 +83,7 @@ public class Shop extends ComponentImpl implements IShop {
     
     public Optional<Category> getCategory(String libelle)
     {
-    	return categories.stream().filter(c -> c.getLibelle() == libelle).findFirst();
+    	return categories.stream().filter(c -> c.getLibelle().toLowerCase().equals(libelle.toLowerCase())).findFirst();
     }
     
     public Shop AddCategories(List<Category> categories) {
@@ -114,20 +92,21 @@ public class Shop extends ComponentImpl implements IShop {
     }
     
     public List<Article> getArticlesByCategory(Category category) {
-        return getArticlesByCategory(category.getId());
+        return getArticlesByCategory(category.getLibelle());
     }
     
-    public List<Article> getArticlesByCategory(Integer categoryId) {
+    public List<Article> getArticlesByCategory(String libelle) {
     	List<Article> articlesFiltred = new ArrayList();
-    	Optional<Category> c = getCategory(categoryId);
-    	if(c.isPresent())
+    	
+    	System.out.println(libelle);
+    	
+    	Optional<Category> optionalCategory = getCategory(libelle);
+    	
+    	if(optionalCategory.isPresent())
     	{
-    		System.out.println(c.get().getLibelle());
-    		articlesFiltred.addAll(articles.stream()
-				    				.filter(article -> article.getCategory().getId() == categoryId || 
-		    								   (article.getCategory().getParent().isPresent() && article.getCategory().getParent().get().getId() == categoryId ))
-				    				.collect(Collectors.toList()));
+    		Category category = optionalCategory.get();
 
+    		articlesFiltred = category.getArticles();
     	}
     	
         return articlesFiltred;
@@ -181,8 +160,8 @@ public class Shop extends ComponentImpl implements IShop {
 				"- Decription : " + description  + "\n" +
 				"- Adresse : " + address  + "\n" +
     			"- Contact : " + contact  + "\n" +
-				"- Catégories : " + getMainCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", ")) + "\n" +
-				"- Sous-catégories : " + getSubCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", "))
+				"- Catï¿½gories : " + getMainCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", ")) + "\n" +
+				"- Sous-catï¿½gories : " + getSubCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", "))
     			;
     }
 }
