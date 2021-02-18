@@ -1,6 +1,7 @@
 package dao;
 
 import model.impl.Shop;
+import model.impl.Administrator;
 import model.impl.Article;
 import model.impl.Category;
 
@@ -29,6 +30,13 @@ public class ShopDAO {
                 put("Accessoires stockage", Optional.of("Stockage"));
             }
         };
+        
+        List<Administrator> admins = new ArrayList<>();
+        
+        admins.add(new Administrator(1,"Brochado","Alexandre","test","test"));
+        admins.add(new Administrator(2,"DAS","Rahul","test2","test2"));
+        admins.add(new Administrator(3,"Mouzouri","Ilhame","test3","test3"));
+        
 
         List<Category> categories = new ArrayList<>();
         int i = 0;
@@ -66,8 +74,10 @@ public class ShopDAO {
 			subCategory.setParent(parent);
         }
 
-        shopHighTech = new Shop(0, "Boutique High tech", "une description", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris", categories);
-  
+        shopHighTech = new Shop(0, "Boutique High tech", "une description", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris");
+        shopHighTech.AddCategories(categories);
+        shopHighTech.addAdmins(admins);
+        
         Optional<Category> cleUsbCategory = shopHighTech.getCategory("Clé USB");
         Article cleUsbSandisk = new Article(0, "clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
         shopHighTech.addArticle(cleUsbSandisk);

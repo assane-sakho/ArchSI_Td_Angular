@@ -8,6 +8,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.POST;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.Consumes;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
@@ -19,12 +24,27 @@ import model.impl.Shop;
 
 @Path("/shop")
 public class ShopResource {
-	 @Context
-	 UriInfo uriInfo;
+	
+	@Context
+	UriInfo uriInfo;
 	 
-	 @Context
-	 Request request;
-	    
+	@Context
+	Request request;
+	 
+	@POST
+    @Produces(MediaType.TEXT_HTML)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void newConnexion(@FormParam("login") String login,
+            @FormParam("mdp") String mdp,
+            @Context HttpServletResponse servletResponse) throws IOException {
+		if(ShopDAO.getINSTANCE().getBoutique().getAdmins().stream().filter(a -> (a.getLogin().equals(login)) && (a.getMdp().equals(mdp))).findFirst().isPresent()) {
+			servletResponse.sendRedirect("../admin.html");
+		}else {
+			servletResponse.sendRedirect("../connection.html");
+		}
+
+    }
+	
 	 @Path("/infos")
 	 @GET
 	 @Produces({ MediaType.TEXT_HTML })

@@ -8,19 +8,21 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Shop extends ComponentImpl implements IShop {
-    private final String description;
-    private final String address;
-    private final String contact;
-    private final List<Article> articles;
-    private final List<Category> categories;
+    private String description;
+    private String address;
+    private String contact;
+    private List<Article> articles;
+    private List<Category> categories;
+    private List<Administrator> admins;
 
-    public Shop(int id, String libelle, String description, String address, String contact, List<Category> categories) {
+    public Shop(int id, String libelle, String description, String address, String contact) {
         super(id, libelle);
         this.description = description;
         this.address = address;
         this.contact = contact;
         this.articles = new ArrayList<>();
-        this.categories = categories;
+        this.categories = new ArrayList<>();
+        this.admins = new ArrayList<>();
     }
 
     public Shop addArticles(List<Article> articles)
@@ -106,6 +108,11 @@ public class Shop extends ComponentImpl implements IShop {
     	return categories.stream().filter(c -> c.getLibelle() == libelle).findFirst();
     }
     
+    public Shop AddCategories(List<Category> categories) {
+    	this.categories.addAll(categories);
+    	return this;
+    }
+    
     public List<Article> getArticlesByCategory(Category category) {
         return getArticlesByCategory(category.getId());
     }
@@ -124,6 +131,47 @@ public class Shop extends ComponentImpl implements IShop {
     	}
     	
         return articlesFiltred;
+    }
+    
+    public Shop addAdmins(List<Administrator> admins)
+    {
+        this.admins.addAll(admins);
+        return this;
+    }
+
+    public Shop deleteAdmins(List<Administrator> admins)
+    {
+        this.admins.removeAll(admins);
+        return this;
+    }
+
+    public Shop addAdmin(Administrator admin)
+    {
+        this.admins.add(admin);
+        return this;
+    }
+
+    public Shop updateAdmin(Administrator admin)
+    {
+        Optional<Administrator> adminToEdit = this.admins.stream().filter(a -> a.getId() == admin.getId()).findFirst();
+
+        adminToEdit.ifPresent(value ->
+                value.setFirstname(admin.getFirstname())
+                     .setLastname(admin.getLastname())
+                     .setLogin(admin.getLogin())
+                     .setMdp(admin.getMdp()));
+                     
+        return this;
+    }
+
+    public Shop deleteAdmin(Administrator admin)
+    {
+        this.admins.remove(admin);
+        return this;
+    }
+
+    public List<Administrator> getAdmins() {
+        return admins;
     }
     
     @Override

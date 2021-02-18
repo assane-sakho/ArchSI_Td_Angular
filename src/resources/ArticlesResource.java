@@ -44,3 +44,4 @@ public class ArticlesResource {
         return new ArticleResource(uriInfo, request, id);
     }
 }
+
