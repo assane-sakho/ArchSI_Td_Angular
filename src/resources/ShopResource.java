@@ -71,4 +71,42 @@ public class ShopResource {
 
         return "[" +  articles.stream().map(article -> article.toString()).collect(Collectors.joining(",")) + "]";
     }
+    
+    @Path("/{category}/articles")
+    @GET
+    @Produces({ MediaType.TEXT_HTML })
+    public String getArticlesByCategory2(@PathParam("category") String categoryLibelle) {
+    	
+    	String baseArticle = 
+	    			"<div class=\"card h-100\">\r\n" + 
+	    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"#articlePicture\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
+	    			"    <div class=\"card-body\">\r\n" + 
+	    			"    <h4 class=\"card-title\">\r\n" + 
+	    			"        <a href=\"#\" class=\"articleName\">#articleName</a>\r\n" + 
+	    			"    </h4>\r\n" + 
+	    			"    <h5 class=\"articlePrice\">#articlePrice</h5>\r\n" + 
+	    			"    <p class=\"card-text articleCategory\">#articleCategory</p>\r\n" + 
+	    			"        <button class=\"btn btn-info\">Modifier</button>\r\n" + 
+	    			"        <button class=\"btn btn-primary\">Supprimer</button>\r\n" + 
+	    			"    </div>\r\n" + 
+    			"</div>";
+        ShopDAO shopDAO = ShopDAO.getINSTANCE();
+        Shop shopHighTech = shopDAO.getBoutique();
+
+        List<Article> articles = shopHighTech.getArticlesByCategory(categoryLibelle);
+        String result = "";
+        for(Article arcticle : articles)
+        {
+        	String tmp = baseArticle;
+        	tmp = tmp.replace("#articlePicture", arcticle.getPicture())
+        			.replace("#articleName", arcticle.getLibelle())
+        			.replace("#articlePrice", "" + arcticle.getPrice())
+        			.replace("#articleCategory", arcticle.getCategory().getLibelle());
+        	result +=tmp;
+        }
+        
+        System.out.println(result);
+
+        return result;
+    }
 }
