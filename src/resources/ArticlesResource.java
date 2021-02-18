@@ -51,6 +51,7 @@ public class ArticlesResource {
         Shop shopHighTech = shopDAO.getBoutique();
     	Optional<Category> optionalCategory = shopHighTech.getCategory(category);
     	
+    	
     	if(optionalCategory.isPresent())
     	{
     		

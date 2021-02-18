@@ -1,8 +1,14 @@
 package resources;
 
+import java.io.IOException;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,6 +21,7 @@ import javax.xml.bind.JAXBElement;
 
 import dao.ShopDAO;
 import model.impl.Article;
+import model.impl.Category;
 import model.impl.Shop;
 
 public class ArticleResource {
@@ -80,6 +87,49 @@ public class ArticleResource {
     
     
     //Modifier un article
+    
+    @PUT
+    @Produces(MediaType.TEXT_HTML)
+    @Path("/update")
+    public void updateArticle(@FormParam("id") Integer id, @FormParam("libelle") String libelle, @FormParam("brand") String brand, @FormParam("price") Double price, @FormParam("category") Integer category, @FormParam("picture") String picture, @Context HttpServletResponse servletResponse) throws IOException {
+    	
+    	Response res;
+    	ShopDAO shopDAO = ShopDAO.getINSTANCE();
+        Shop shopHighTech = shopDAO.getBoutique();
+    	Optional<Category> optionalCategory = shopHighTech.getCategory(category);
+    	
+    	
+    	if(optionalCategory.isPresent())
+    	{
+    		
+    		if(shopDAO.getBoutique().getArticleById(id).isPresent())
+            {
+    			Article a = shopDAO.getBoutique().getArticleById(id).get();
+    			a.setLibelle(libelle);
+    			a.setBrand(brand);
+    			a.setPicture(picture);
+    			a.setPrice(price);
+    			
+    	        shopHighTech.updateArticle(a);
+    	        System.out.println("Affichage des articles: \n");
+    	        
+            	res = Response.noContent().build();
+            } else
+            {
+            	System.out.println("Article inexistant");
+            	res = Response.created(uriInfo.getAbsolutePath()).build();
+            }
+           
+    	}
+    	else
+    	{
+    		//System.out.println("Catégorie inexistant");
+    		servletResponse.sendRedirect("../AjoutArticle.html");
+    	}
+    	
+        
+    }
+    
     
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
