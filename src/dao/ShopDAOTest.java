@@ -14,7 +14,7 @@ class ShopDAOTest {
 
         System.out.println(shopHighTech);
         
-        Optional<Category> cleUsbCategory = shopHighTech.getCategory("Clé USB");
+        Optional<Category> cleUsbCategory = shopHighTech.getCategory("Clé-USB");
         Article cleUsbSandisk = new Article(0, "clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
         
         /* Ajout article */

@@ -13,7 +13,9 @@ public class ShopDAO {
     private Shop shopHighTech;
 
     private ShopDAO()
+ 
     {
+  
         Map<String, Optional<String>> categoriesMap = new HashMap<String, Optional<String>>() {
             {
                 put("Ordinateur", Optional.empty());
@@ -67,7 +69,7 @@ public class ShopDAO {
 								       		  	 .get().getValue().get();
 			
 			Category parent = categories.stream()
-						.filter(c -> c.getLibelle() == parentLibelle)
+						.filter(c -> c.getLibelle().equals(parentLibelle))
 						.findFirst()
 						.get();
 			parent.addChild(subCategory);
@@ -80,7 +82,6 @@ public class ShopDAO {
         Optional<Category> cleUsbCategory = shopHighTech.getCategory("clé-USB");
         Article cleUsbSandisk = new Article(0, "clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
         shopHighTech.addArticle(cleUsbSandisk);
-        
     }
 
     public static ShopDAO getINSTANCE()

@@ -31,6 +31,26 @@ public class ArticleResource {
         this.request = request;
     }
     
+    //Application integration
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Article getArticle() {
+        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
+        if(article==null)
+            throw new RuntimeException("Get: article with " + id +  " not found");
+        return article;
+    }
+
+    // for the browser
+    @GET
+    @Produces(MediaType.TEXT_XML)
+    public Article getArticleHTML() {
+        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
+        if(article==null)
+            throw new RuntimeException("Get: article with " + id +  " not found");
+        return article;
+    }
+    
     @DELETE
     public void deleteArticle() {
     	//categoryTelephonie/articles/1
@@ -40,5 +60,36 @@ public class ArticleResource {
 
         if(shopHighTech==null)
             throw new RuntimeException("Delete: Article avec " + id +  " non trouve");
+    }
+    
+    
+    
+    
+    //Modifier un article
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_XML)
+    public Response putArticle(JAXBElement<Article> article) {
+    	System.out.println(article.toString());
+    	Article a = article.getValue();
+        return putAndGetResponse(a);
+    }
+    
+    private Response putAndGetResponse(Article article) {
+        
+    	Response res;
+        ShopDAO shopDAO = ShopDAO.getINSTANCE();
+        
+        if(shopDAO.getBoutique().getArticleById(article.getId()).isPresent())
+        {
+        	res = Response.noContent().build();
+        } else
+        {
+        	res = Response.created(uriInfo.getAbsolutePath()).build();
+        }
+        
+        
+        shopDAO.getBoutique().updateArticle(article);
+        return res;
     }
 }
