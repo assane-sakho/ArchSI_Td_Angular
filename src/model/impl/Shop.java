@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+    
 public class Shop extends ComponentImpl{
     private String description;
     private String address;
     private String contact;
     private List<Category> categories;
     private List<Administrator> admins;
+    private int idArticle;
 
     public Shop(int id, String libelle, String description, String address, String contact) {
         super(id, libelle);
@@ -19,11 +21,13 @@ public class Shop extends ComponentImpl{
         this.contact = contact;
         this.categories = new ArrayList<>();
         this.admins = new ArrayList<>();
+        this.idArticle = this.getArticles().size();
     }
 
     public Shop addArticle(Article article)
     {
     	article.getCategory().addArticle(article);
+    	idArticle++;
         return this;
     }
 
@@ -35,7 +39,7 @@ public class Shop extends ComponentImpl{
 
     /*public Shop deleteArticle(Article article)
     {
-    	article.getCategory().deleteArticle(article);
+        this.articles.add(article);
         return this;
     }*/
     
@@ -64,6 +68,11 @@ public class Shop extends ComponentImpl{
 
     public String getContact() {
         return contact;
+    }
+    
+    public int getIdArticle()
+    {
+    	return this.idArticle;
     }
 
     public List<Category> getMainCategories()
