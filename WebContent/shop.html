@@ -12,55 +12,73 @@
         <div class="row">
             <h1>Articles</h1>
         </div>
-        <div class="row">
+        <div class="row" id="articleRow">
 
-          <div id="baseArticle" class="col-lg-4 col-md-6 mb-4">
+          <!-- <div id="baseArticle" class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top articleImage" src="http://placehold.it/700x400" alt=""></a>
+              <a href="#"><img class="card-img-top articleImage" src="" alt="" width="450" height="400"></a>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="#" class="articleName">Item One</a>
                 </h4>
                 <h5 class="articlePrice">$24.99</h5>
                 <p class="card-text articleCategory">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModifierModal">Modifier</button>
+                <button class="btn btn-info">Modifier</button>
                 <button class="btn btn-primary">Supprimer</button>
               </div>
             </div>
-          </div>
-
+          </div> -->
         </div>
     </div>
-</body>
-<script
+</body><script
   src="https://code.jquery.com/jquery-3.5.1.js"
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 <script>
   
   $(document).ready(function(){
-    //$("#baseArticle").hide();
+     // $("#baseArticle").hide();
 
     let searchParams = new URLSearchParams(window.location.search)
     var category = searchParams.get('category');
+    var url = "http://localhost:8080/ArchSI_Td_Angular/rest/shop/" + category + "/articles";
+   // console.log(    url)
+   // var articles = '[{ "id" :"0", "libelle" :"clé usb 16 - go", "price" : "9.99", "brand" : "Sandisk", "category" : "Clé-USB", "picture" : "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg"}]';
+    //setArticles(articles);
+//     $.ajax({
+//       url: url,
+//       type: 'GET',
+//       crossDomain: true,
+//       dataType: 'jsonp',
+//       headers: {  'Access-Control-Allow-Origin': 'http://localhost:8080/' }, 
+//       mode: 'no-cors',
+//       success: function(data) {
+//         setArticles(data);
+//       }
+//     });
+ 
 
-    var url = "http://localhost:8080/ArchSI_Td_Angular/rest/articles/" + category + "/shop";
-    console.log(url)
-    $.ajax({
-        url: url,
-        type: 'GET',
-        success: function(data) {
-            
-        }
-    });
+    $('#articleRow').append('<object DATA=\"' + url + '\" style="width: 100%; height : 100vh;"></object>');
+
   });
+
+  function setArticles(articlesStr)
+  {
+      var jsonArticle = JSON.parse(articlesStr);
+      $(jsonArticle).each(function(i, article){
+        var articleDiv = $("<div class=\"col-lg-4 col-md-6 mb-4\">" + $("#baseArticle").html() + "</div>");
+
+        $(articleDiv).find(".articleName").text(article.libelle);
+        $(articleDiv).find(".articlePrice").text(article.price);
+        $(articleDiv).find(".articleCategory").text(article.category);
+        $(articleDiv).find(".articleImage").attr('src', article.picture);
+
+        $("#articleRow").append(articleDiv);
+      });
+  }
 </script>
-
-
-<!-- Modifier un article modal -->
-
 <!-- Modal -->
 <div class="modal fade" id="ModifierModal" tabindex="-1" role="dialog" aria-labelledby="ModifierModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

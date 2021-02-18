@@ -663,3 +663,8 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 ul.nav li.dropdown:hover ul.dropdown-menu {
             display: block;
     }
+
+    li{
+        cursor: pointer;
+    }
+

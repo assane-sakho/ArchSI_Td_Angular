@@ -65,11 +65,13 @@ public class Article extends ComponentImpl{
     @Override
     public String toString()
     {
-    	return libelle + "\n" +
-				"- Marque : " + brand  + "\n" +
-				"- Prix : " + price  + "\n" +
-    			"- Categorie : " + category  + "\n" +
-    			"- Photo : " + picture  + "\n"
-				;
+    	return "{ " + 
+					"\"id\" :\"" + id + "\", " +
+					"\"libelle\" :\"" + libelle + "\", " +
+    				"\"price\" : \"" + price+ "\", " +
+    				"\"brand\" : \"" + brand+ "\", " +
+    				"\"category\" : \"" + category.getLibelle() + "\", " +
+    				"\"picture\" : \"" + picture+ "\"" +
+    			"}";
     }
 }
