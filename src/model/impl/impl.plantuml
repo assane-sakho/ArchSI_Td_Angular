@@ -7,10 +7,18 @@ title __IMPL's Class Diagram__\n
         - firstname : String
         - id : int
         - lastname : String
+        - login : String
+        - mdp : String
         + Administrator()
         + getFirstname()
         + getId()
         + getLastname()
+        + getLogin()
+        + getMdp()
+        + setFirstname()
+        + setLastname()
+        + setLogin()
+        + setMdp()
     }
   }
   
@@ -37,26 +45,32 @@ title __IMPL's Class Diagram__\n
 
   namespace model.impl {
     class model.impl.Category {
+        - articles : List<Article>
         - categorieParent : Optional<Category>
         - sousCategories : List<Category>
         + Category()
         + Category()
         + Category()
         + Category()
+        + addArticle()
         + addChild()
         + addChildren()
+        + deleteArticle()
+        + getArticles()
         + getChildren()
         + getParent()
+        + getSubArticles()
         + setParent()
         + toString()
+        + updateArticle()
     }
   }
   
 
   namespace model.impl {
     abstract class model.impl.ComponentImpl {
+        # id : int
         # libelle : String
-        - id : int
         + getId()
         + getLibelle()
         # ComponentImpl()
@@ -67,35 +81,44 @@ title __IMPL's Class Diagram__\n
   namespace model.impl {
     class model.impl.Shop {
         - address : String
-        - articles : List<Article>
+        - admins : List<Administrator>
         - categories : List<Category>
         - contact : String
         - description : String
+        - idArticle : int
+        + AddCategories()
         + Shop()
+        + addAdmin()
+        + addAdmins()
         + addArticle()
-        + addArticles()
+        + deleteAdmin()
+        + deleteAdmins()
         + deleteArticle()
-        + deleteArticles()
         + getAddress()
+        + getAdmins()
+        + getArticleById()
         + getArticles()
+        + getArticlesByCategory()
+        + getArticlesByCategory()
+        + getCategory()
         + getCategory()
         + getContact()
         + getDescription()
+        + getIdArticle()
         + getMainCategories()
         + getSubCategories()
         + toString()
+        + updateAdmin()
         + updateArticle()
     }
   }
   
 
-  model.impl.Article .up.|> model.api.IArticle
   model.impl.Article -up-|> model.impl.ComponentImpl
-  model.impl.Article o-- model.impl.Category : category
+  model.impl.Article  -> model.impl.Category : category
   model.impl.Category .up.|> model.api.IComposite
   model.impl.Category -up-|> model.impl.ComponentImpl
   model.impl.ComponentImpl .up.|> model.api.IComponent
-  model.impl.Shop .up.|> model.api.IShop
   model.impl.Shop -up-|> model.impl.ComponentImpl
 
 

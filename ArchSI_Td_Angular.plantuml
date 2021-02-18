@@ -9,13 +9,37 @@ title __ARCHSI_TD_ANGULAR's Class Diagram__\n
   
 
   namespace dao {
+    class dao.ShopDAO {
+    }
+  }
+  
+
+  namespace dao {
+    class dao.ShopDAOTest {
+    }
+  }
+  
+
+  namespace dao {
     class dao.ShopDAOTest {
     }
   }
   
 
   namespace model.api {
-    interface model.api.IArticle {
+    interface model.api.IAdministrator {
+    }
+  }
+  
+
+  namespace model.api {
+    interface model.api.IAdministrator {
+    }
+  }
+  
+
+  namespace model.api {
+    interface model.api.IComponent {
     }
   }
   
@@ -33,7 +57,13 @@ title __ARCHSI_TD_ANGULAR's Class Diagram__\n
   
 
   namespace model.api {
-    interface model.api.IShop {
+    interface model.api.IComposite {
+    }
+  }
+  
+
+  namespace model.impl {
+    class model.impl.Administrator {
     }
   }
   
@@ -51,7 +81,25 @@ title __ARCHSI_TD_ANGULAR's Class Diagram__\n
   
 
   namespace model.impl {
+    class model.impl.Article {
+    }
+  }
+  
+
+  namespace model.impl {
     class model.impl.Category {
+    }
+  }
+  
+
+  namespace model.impl {
+    class model.impl.Category {
+    }
+  }
+  
+
+  namespace model.impl {
+    abstract class model.impl.ComponentImpl {
     }
   }
   
@@ -68,14 +116,61 @@ title __ARCHSI_TD_ANGULAR's Class Diagram__\n
   }
   
 
+  namespace model.impl {
+    class model.impl.Shop {
+    }
+  }
+  
+
+  namespace resources {
+    class resources.ArticleResource {
+    }
+  }
+  
+
+  namespace resources {
+    class resources.ArticleResource {
+    }
+  }
+  
+
+  namespace resources {
+    class resources.ArticlesResource {
+    }
+  }
+  
+
+  namespace resources {
+    class resources.ArticlesResource {
+    }
+  }
+  
+
+  namespace resources {
+    class resources.ShopResource {
+    }
+  }
+  
+
+  namespace resources {
+    class resources.ShopResource {
+    }
+  }
+  
+
   dao.ShopDAO o-- model.impl.Shop : shopHighTech
-  model.impl.Article .up.|> model.api.IArticle
+  dao.ShopDAO o-- model.impl.Shop : shopHighTech
+  model.impl.Article -up-|> model.impl.ComponentImpl
+  model.impl.Article o-- model.impl.Category : category
   model.impl.Article -up-|> model.impl.ComponentImpl
   model.impl.Article o-- model.impl.Category : category
   model.impl.Category .up.|> model.api.IComposite
   model.impl.Category -up-|> model.impl.ComponentImpl
+  model.impl.Category .up.|> model.api.IComposite<model.impl.Category>
+  model.impl.Category -up-|> model.impl.ComponentImpl
   model.impl.ComponentImpl .up.|> model.api.IComponent
-  model.impl.Shop .up.|> model.api.IShop
+  model.impl.ComponentImpl .up.|> model.api.IComponent
+  model.impl.Shop -up-|> model.impl.ComponentImpl
   model.impl.Shop -up-|> model.impl.ComponentImpl
 
 
