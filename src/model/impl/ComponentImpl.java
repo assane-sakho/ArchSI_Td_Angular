@@ -3,7 +3,7 @@ package model.impl;
 import model.api.IComponent;
 
 public abstract class ComponentImpl implements IComponent {
-    private final int id;
+    protected final int id;
     protected String libelle;
 
     protected ComponentImpl(int id, String libelle) {

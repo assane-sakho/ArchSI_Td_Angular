@@ -69,6 +69,6 @@ public class ShopResource {
 
         List<Article> articles = shopHighTech.getArticlesByCategory(categoryLibelle);
 
-        return articles.stream().map(article -> article.toString()).collect(Collectors.joining(","));
+        return "[" +  articles.stream().map(article -> article.toString()).collect(Collectors.joining(",")) + "]";
     }
 }
