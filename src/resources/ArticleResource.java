@@ -48,23 +48,20 @@ public class ArticleResource {
         Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
       
     	String result = 
+    			"<p>Detail de l'article : </p>" + 
     			"<div class=\"card h-100\">\r\n" + 
-    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"" + article.getPrice() + "\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
+    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"" + article.getPicture() + "\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
     			"    <div class=\"card-body\">\r\n" + 
     			"    <h4 class=\"card-title\">\r\n" + 
-    			"        <a href=\"#\" class=\"articleName\">" + article.getPrice() + "</a>\r\n" + 
+    			"        <a href=\"#\" class=\"articleName\">" + article.getLibelle() + "</a>\r\n" + 
     			"    </h4>\r\n" + 
     			"    <h5 class=\"articlePrice\">" + article.getPrice() + "</h5>\r\n" + 
-    			"    <p class=\"card-text articleCategory\">" +  article.getPrice() + "</p>\r\n" + 
+    			"    <p class=\"card-text articleCategory\">" +  article.getCategory().getLibelle() + "</p>\r\n" + 
     			"        <button class=\"btn btn-info\">Modifier</button>\r\n" + 
     			"        <button class=\"btn btn-primary\">Supprimer</button>\r\n" + 
     			"    </div>\r\n" + 
 			"</div>";
-    	result = result.replace("#articleId", "" + article.getId())
-    			.replace("#articlePicture", article.getPicture())
-    			.replace("#articleName", article.getLibelle())
-    			.replace("#articlePrice", "" + article.getPrice())
-    			.replace("#articleCategory", article.getCategory().getLibelle());
+
         return result;
     }
     
