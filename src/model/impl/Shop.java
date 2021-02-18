@@ -74,6 +74,11 @@ public class Shop extends ComponentImpl{
     {
     	return this.idArticle;
     }
+    
+    public Optional<Article> getArticleById(int articleId)
+    {
+    	return getArticles().stream().filter(a -> a.getId() == articleId).findFirst();
+    }
 
     public List<Category> getMainCategories()
     {
