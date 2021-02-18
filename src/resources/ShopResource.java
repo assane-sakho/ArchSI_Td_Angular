@@ -80,9 +80,10 @@ public class ShopResource {
     	String baseArticle = 
 	    			"<div class=\"card h-100\">\r\n" + 
 	    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"#articlePicture\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
-	    			"    <div class=\"card-body\">\r\n" + 
+	    			"  <input type=\"hidden\" id=\"articleId\" value=\"#articleId\"/>\r\n" + 
+	    			" <div class=\"card-body\">\r\n" + 
 	    			"    <h4 class=\"card-title\">\r\n" + 
-	    			"        <a href=\"#\" class=\"articleName\">#articleName</a>\r\n" + 
+	    			"        <a href=\"\\ArchSI_Td_Angular\\rest\\articles\\#articleId\" class=\"articleName\">#articleName</a>\r\n" + 
 	    			"    </h4>\r\n" + 
 	    			"    <h5 class=\"articlePrice\">#articlePrice</h5>\r\n" + 
 	    			"    <p class=\"card-text articleCategory\">#articleCategory</p>\r\n" + 
@@ -98,7 +99,8 @@ public class ShopResource {
         for(Article arcticle : articles)
         {
         	String tmp = baseArticle;
-        	tmp = tmp.replace("#articlePicture", arcticle.getPicture())
+        	tmp = tmp.replace("#articleId", "" + arcticle.getId())
+        			.replace("#articlePicture", arcticle.getPicture())
         			.replace("#articleName", arcticle.getLibelle())
         			.replace("#articlePrice", "" + arcticle.getPrice())
         			.replace("#articleCategory", arcticle.getCategory().getLibelle());

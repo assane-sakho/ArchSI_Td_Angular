@@ -43,12 +43,29 @@ public class ArticleResource {
 
     // for the browser
     @GET
-    @Produces(MediaType.TEXT_XML)
-    public Article getArticleHTML() {
+    @Produces(MediaType.TEXT_HTML)
+    public String getArticleHTML() {
         Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
-        if(article==null)
-            throw new RuntimeException("Get: article with " + id +  " not found");
-        return article;
+      
+    	String result = 
+    			"<div class=\"card h-100\">\r\n" + 
+    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"" + article.getPrice() + "\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
+    			"    <div class=\"card-body\">\r\n" + 
+    			"    <h4 class=\"card-title\">\r\n" + 
+    			"        <a href=\"#\" class=\"articleName\">" + article.getPrice() + "</a>\r\n" + 
+    			"    </h4>\r\n" + 
+    			"    <h5 class=\"articlePrice\">" + article.getPrice() + "</h5>\r\n" + 
+    			"    <p class=\"card-text articleCategory\">" +  article.getPrice() + "</p>\r\n" + 
+    			"        <button class=\"btn btn-info\">Modifier</button>\r\n" + 
+    			"        <button class=\"btn btn-primary\">Supprimer</button>\r\n" + 
+    			"    </div>\r\n" + 
+			"</div>";
+    	result = result.replace("#articleId", "" + article.getId())
+    			.replace("#articlePicture", article.getPicture())
+    			.replace("#articleName", article.getLibelle())
+    			.replace("#articlePrice", "" + article.getPrice())
+    			.replace("#articleCategory", article.getCategory().getLibelle());
+        return result;
     }
     
     @DELETE

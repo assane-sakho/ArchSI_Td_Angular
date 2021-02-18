@@ -33,6 +33,7 @@ public class ArticlesResource {
     Request request;
     
     @Path("{article}")
+    @Produces(MediaType.TEXT_HTML)
     public ArticleResource getArticle(@PathParam("article") Integer id) {
         return new ArticleResource(uriInfo, request, id);
     }
