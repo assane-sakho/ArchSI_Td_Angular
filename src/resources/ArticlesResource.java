@@ -38,4 +38,9 @@ public class ArticlesResource {
 
         return  shopHighTech.getArticlesByCategory(categoryId);
     }
+    
+    @Path("{article}")
+    public ArticleResource getArticle(@PathParam("article") Integer id) {
+        return new ArticleResource(uriInfo, request, id);
+    }
 }

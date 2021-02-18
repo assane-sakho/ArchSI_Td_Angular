@@ -40,7 +40,8 @@ class ShopDAOTest {
         
         /* Suppression article */
 
-        shopHighTech.deleteArticle(cleUsbSandisk);
+        //shopHighTech.deleteArticle(cleUsbSandisk);
+        shopHighTech.deleteArticle(1);
         System.out.println("Affichage des articles: \n");
         shopHighTech.getArticles().forEach(article ->  System.out.println(article));
     }

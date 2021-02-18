@@ -83,4 +83,8 @@ public class ShopDAO {
     public Shop getBoutique() {
         return shopHighTech;
     }
+    
+    /*public Map<String, Shop> getModel(){
+        return shopHighTech;
+    }*/
 }

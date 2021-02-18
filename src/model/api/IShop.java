@@ -8,8 +8,10 @@ import java.util.List;
 public interface IShop {
     IShop addArticle(Article article);
     IShop updateArticle(Article article);
-    IShop deleteArticle(Article article);
+//  IShop deleteArticle(Article article);
+    IShop deleteArticle(Integer id);
 
+    
     IShop addArticles(List<Article> articles);
     IShop deleteArticles(List<Article> articles);
 

@@ -55,9 +55,18 @@ public class Shop extends ComponentImpl implements IShop {
         return this;
     }
 
-    public Shop deleteArticle(Article article)
+    /*public Shop deleteArticle(Article article)
     {
         this.articles.remove(article);
+        return this;
+    }*/
+    
+    public Shop deleteArticle(Integer id)
+    {
+    	Optional<Article> article  = articles.stream().filter(a-> a.getId() == id).findFirst();
+    	if(article.isPresent()) {
+            this.articles.remove(article.get());
+    	}
         return this;
     }
 
