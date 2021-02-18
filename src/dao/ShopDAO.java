@@ -18,18 +18,18 @@ public class ShopDAO {
   
         Map<String, Optional<String>> categoriesMap = new HashMap<String, Optional<String>>() {
             {
-                put("Ordinateur", Optional.empty());
-                put("Stockage", Optional.empty());
-                put("Téléphonie", Optional.empty());
-                put("PC-Portable", Optional.of("Ordinateur"));
-                put("PC-de-Bureau", Optional.of("Ordinateur"));
-                put("Accessoires-ordinateur", Optional.of("Ordinateur"));
-                put("SmartPhone", Optional.of("Téléphonie"));
-                put("Tel-fixe", Optional.of("Téléphonie"));
-                put("Accessoires-téléphonie", Optional.of("Téléphonie"));
-                put("Disque-dur", Optional.of("Stockage"));
-                put("Clé-USB", Optional.of("Stockage"));
-                put("Accessoires-stockage", Optional.of("Stockage"));
+                put("ordinateur", Optional.empty());
+                put("stockage", Optional.empty());
+                put("telephonie", Optional.empty());
+                put("pc-portable", Optional.of("ordinateur"));
+                put("pc-de-bureau", Optional.of("ordinateur"));
+                put("accessoires-ordinateur", Optional.of("ordinateur"));
+                put("smartphone", Optional.of("telephonie"));
+                put("tel-fixe", Optional.of("telephonie"));
+                put("accessoires-telephonie", Optional.of("telephonie"));
+                put("disque-dur", Optional.of("stockage"));
+                put("cle-usb", Optional.of("stockage"));
+                put("accessoires-stockage", Optional.of("stockage"));
             }
         };
         
@@ -79,9 +79,22 @@ public class ShopDAO {
         shopHighTech = new Shop(0, "Boutique High tech", "une description", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris");
         shopHighTech.AddCategories(categories);
         shopHighTech.addAdmins(admins);
-        Optional<Category> cleUsbCategory = shopHighTech.getCategory("clé-USB");
+       
+        Optional<Category> cleUsbCategory = shopHighTech.getCategory("cle-usb");
         Article cleUsbSandisk = new Article(0, "clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
         shopHighTech.addArticle(cleUsbSandisk);
+       
+        Optional<Category> disquedurCategory = shopHighTech.getCategory("disque-dur");
+        Article disquedur1 = new Article(1, "disque", "disque", 9.99, disquedurCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        shopHighTech.addArticle(disquedur1);
+        
+        Optional<Category> ordinateurCategory = shopHighTech.getCategory("pc-portable");
+        Article ordi1 = new Article(2, "Ordi de bureau", "HP", 559.99, ordinateurCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
+        shopHighTech.addArticle(ordi1);
+
+        
+        Article ordi2 = new Article(2, "Ordi de bureau 2", "Asus", 559.99, ordinateurCategory.get(), "https://pic.clubic.com/v1/images/1795260/raw?fit=max&width=1200&hash=8091366f8bb7f6580b818f2da208d4dbe643ca22");
+        shopHighTech.addArticle(ordi2);
     }
 
     public static ShopDAO getINSTANCE()

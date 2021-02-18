@@ -35,27 +35,27 @@ session_start();
         <ul class="nav navbar-nav">
           <li><a onclick="getPage('/ArchSI_Td_Angular/rest/shop/infos')">Accueil</a></li>
 			   <li class="dropdown">
-					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Ordinateur')" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Ordinateurs</span> <span class="caret"></span></a>
+					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=ordinateur')" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Ordinateurs</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=PC-Portable')">PC Portable</a></li>
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=PC-de-Bureau')">PC de Bureau</a></li>
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Accessoires-ordinateur')">Accessoires</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=pc-portable')">PC Portable</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=pc-de-bureau')">PC de Bureau</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=accessoires-ordinateur')">Accessoires</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=TÈlÈphonie')" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">T√©l√©phonies</span> <span class="caret"></span></a>
+					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=telephonie')" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">T√©l√©phonies</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=SmartPhone')">Smart Phone</a></li>
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Tel-fixe')">Tel Fixe</a></li>
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Accessoires-tÈlÈphonie')">Accessoires</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=smartphone')">Smart Phone</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=tel-fixe')">Tel Fixe</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=accessoires-telephonie')">Accessoires</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Stockage')" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Stockage</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Disque-dur')">Disque dur</a></li>
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=ClÈ-USB')">Cl√© USB</a></li>
-						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Accessoires-stockage')">Accessoires</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=disque-dur')">Disque dur</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=cle-usb')">Cl√© USB</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=accessoires-stockage')">Accessoires</a></li>
 					</ul>
 				</li>	
 

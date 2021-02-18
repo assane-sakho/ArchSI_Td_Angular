@@ -3,16 +3,16 @@
 title __API's Class Diagram__\n
 
   namespace model.api {
-    interface model.api.IArticle {
-        {abstract} + getBrand()
-        {abstract} + getCategory()
-        {abstract} + getPicture()
-        {abstract} + getPrice()
-        {abstract} + setBrand()
-        {abstract} + setCategorie()
-        {abstract} + setLibelle()
-        {abstract} + setPicture()
-        {abstract} + setPrice()
+    interface model.api.IAdministrator {
+        {abstract} + getFirstname()
+        {abstract} + getId()
+        {abstract} + getLastname()
+        {abstract} + getLogin()
+        {abstract} + getMdp()
+        {abstract} + setFirstname()
+        {abstract} + setLastname()
+        {abstract} + setLogin()
+        {abstract} + setMdp()
     }
   }
   
@@ -31,23 +31,6 @@ title __API's Class Diagram__\n
         {abstract} + addChildren()
         {abstract} + getChildren()
         {abstract} + getParent()
-    }
-  }
-  
-
-  namespace model.api {
-    interface model.api.IShop {
-        {abstract} + addArticle()
-        {abstract} + addArticles()
-        {abstract} + deleteArticle()
-        {abstract} + deleteArticles()
-        {abstract} + getAddress()
-        {abstract} + getArticles()
-        {abstract} + getContact()
-        {abstract} + getDescription()
-        {abstract} + getMainCategories()
-        {abstract} + getSubCategories()
-        {abstract} + updateArticle()
     }
   }
   
