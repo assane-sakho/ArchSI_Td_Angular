@@ -61,4 +61,35 @@ public class ArticleResource {
         if(shopHighTech==null)
             throw new RuntimeException("Delete: Article avec " + id +  " non trouve");
     }
+    
+    
+    
+    
+    //Modifier un article
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_XML)
+    public Response putArticle(JAXBElement<Article> article) {
+    	System.out.println(article.toString());
+    	Article a = article.getValue();
+        return putAndGetResponse(a);
+    }
+    
+    private Response putAndGetResponse(Article article) {
+        
+    	Response res;
+        ShopDAO shopDAO = ShopDAO.getINSTANCE();
+        
+        if(shopDAO.getBoutique().getArticleById(article.getId()).isPresent())
+        {
+        	res = Response.noContent().build();
+        } else
+        {
+        	res = Response.created(uriInfo.getAbsolutePath()).build();
+        }
+        
+        
+        shopDAO.getBoutique().updateArticle(article);
+        return res;
+    }
 }

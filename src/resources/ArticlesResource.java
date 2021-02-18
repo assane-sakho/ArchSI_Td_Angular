@@ -50,14 +50,12 @@ public class ArticlesResource {
         Shop shopHighTech = shopDAO.getBoutique();
     	Optional<Category> optionalCategory = shopHighTech.getCategory(category);
     	
-    	System.out.println(category);
     	if(optionalCategory.isPresent())
     	{
     		
     		Article article = new Article(shopHighTech.getIdArticle() + 1, libelle, brand, price, optionalCategory.get(), picture);
             
-            Shop shops = ShopDAO.getINSTANCE().getBoutique().addArticle(article);
-            
+            ShopDAO.getINSTANCE().getBoutique().addArticle(article);
             
             //redirection vers listes des articles.
             servletResponse.sendRedirect("../admin.html");
@@ -65,7 +63,7 @@ public class ArticlesResource {
     	}
     	else
     	{
-    		System.out.println("Catégorie inexistant");
+    		//System.out.println("Catégorie inexistant");
     		servletResponse.sendRedirect("../AjoutArticle.html");
     	}
     	
