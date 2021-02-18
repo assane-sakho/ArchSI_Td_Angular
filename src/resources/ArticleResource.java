@@ -48,7 +48,7 @@ public class ArticleResource {
     //Modifier un article
     
     @PUT
-    @Consumes(MediaType.APPLICATION_XML)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response putArticle(JAXBElement<Article> article) {
     	System.out.println(article.toString());
     	Article a = article.getValue();
