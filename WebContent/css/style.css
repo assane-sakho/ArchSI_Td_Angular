@@ -510,7 +510,7 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 }
 
 @-webkit-keyframes pulse {
-    0 {
+    0% {
         -webkit-transform: scale(1);
         transform: scale(1);
     }
@@ -527,7 +527,7 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 }
 
 @-moz-keyframes pulse {
-    0 {
+    0% {
         -moz-transform: scale(1);
         transform: scale(1);
     }
@@ -659,3 +659,7 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 	}
 
 }
+
+ul.nav li.dropdown:hover ul.dropdown-menu {
+            display: block;
+    }

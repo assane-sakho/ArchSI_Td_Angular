@@ -28,35 +28,34 @@ session_start();
   <div id="preloader">
     <div id="load"></div>
   </div>
-
-  <nav class=" navbar-custom navbar-fixed-top top-nav-collapse" role="navigation">
+  <nav class=" navbar-custom top-nav-collapse" role="navigation">
     <div class="container">
 		<div class="navbar-header">
       <!-- Collect the nav links, forms, and other content for toggling -->
         <ul class="nav navbar-nav">
           <li><a href="index.php">Accueil</a></li>
 			   <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Ordinateurs</span> <span class="caret"></span></a>
+					<a href="\ArchSI_Td_Angular\shop.html?category=Ordinateur" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Ordinateurs</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">PC Portable</a></li>
-						<li><a href="#">PC de Bureau</a></li>
-						<li><a href="#">Accessoires</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=PC-Portable">PC Portable</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=PC-de-Bureau">PC de Bureau</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=Accessoires-ordinateur">Accessoires</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">T√©l√©phonies</span> <span class="caret"></span></a>
+					<a href="\ArchSI_Td_Angular\shop.html?category=TÈlÈphonie" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">T√©l√©phonies</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Smart Phone</a></li>
-						<li><a href="#">Tel Fixe</a></li>
-						<li><a href="#">Accessoires</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=SmartPhone">Smart Phone</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=Tel-fixe">Tel Fixe</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=Accessoires-tÈlÈphonie">Accessoires</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Stockage</span> <span class="caret"></span></a>
+					<a href="\ArchSI_Td_Angular\shop.html?category=Stockage" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Stockage</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Disque dur</a></li>
-						<li><a href="#">Cl√© USB</a></li>
-						<li><a href="#">Accessoires</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=Disque-dur">Disque dur</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=ClÈ-USB">Cl√© USB</a></li>
+						<li><a href="\ArchSI_Td_Angular\shop.html?category=Accessoires-stockage">Accessoires</a></li>
 					</ul>
 				</li>	
 
@@ -64,58 +63,23 @@ session_start();
         </ul>
 		<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
         <ul class="nav navbar-nav">
-         
-	  <?php 
-	  if (isset($_SESSION['USER'])){
-	   ?>
-		  <li><a href="index.php?url=deconnexion">D√©connexion</a></li>
-		  
-	  <?php } else { ?>
+
+	    <!-- <li><a href="index.php?url=deconnexion">D√©connexion</a></li> -->
 	  
-	  <li><a href="index.php?url=connexion">Connexion</a></li>
+	  <li><a href="\ArchSI_Td_Angular\connection.html">Connexion</a></li>
 	  
-	  <?php } ?>
+	
         </ul>
       <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
   </nav>
 
-<?php
-if(isset($_GET['url']))
-{
-	switch ($_GET['url'])
-	{
-		case "connexion": include('php/connexion.php');
-		break;
-		case "deconnexion": include('php/deconnexion.php');
-		break;
-		case "pcportable": include('php/activites.php');
-		break;
-		case "pcbureau": include('php/gestionAct.php');
-		break;
-		case "accessordi": include('php/activites.php');
-		break;
-		case "accesstel": include('php/gestionAct.php');
-		break;
-		case "accessstock": include('php/activites.php');
-		break;
-		case "smartphone": include('php/gestionAct.php');
-		break;
-		case "telfixe": include('php/activites.php');
-		break;
-		case "disquedur": include('php/gestionAct.php');
-		break;
-		case "cleusb": include('php/gestionAct.php');
-		break;
-	}
-}
-else
-{
-	include('php/home.php');
-}
+<div class="container">
 
-?>
+	<OBJECT DATA="/ArchSI_Td_Angular/rest/shop/infos" STYLE="width:100%;"></OBJECT>
+
+</div>
 
   <footer>
     <div class="container">
@@ -146,12 +110,6 @@ else
         </div>
       </div>
     </div>
-	
-	
-        
-			
-      
- 
 	
 	
   </footer>
