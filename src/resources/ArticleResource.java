@@ -31,6 +31,26 @@ public class ArticleResource {
         this.request = request;
     }
     
+    //Application integration
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Article getArticle() {
+        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
+        if(article==null)
+            throw new RuntimeException("Get: article with " + id +  " not found");
+        return article;
+    }
+
+    // for the browser
+    @GET
+    @Produces(MediaType.TEXT_XML)
+    public Article getArticleHTML() {
+        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
+        if(article==null)
+            throw new RuntimeException("Get: article with " + id +  " not found");
+        return article;
+    }
+    
     @DELETE
     public void deleteArticle() {
     	//categoryTelephonie/articles/1

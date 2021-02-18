@@ -33,29 +33,29 @@ session_start();
 		<div class="navbar-header">
       <!-- Collect the nav links, forms, and other content for toggling -->
         <ul class="nav navbar-nav">
-          <li><a href="index.php">Accueil</a></li>
+          <li><a onclick="getPage('/ArchSI_Td_Angular/rest/shop/infos')">Accueil</a></li>
 			   <li class="dropdown">
-					<a href="\ArchSI_Td_Angular\shop.html?category=Ordinateur" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Ordinateurs</span> <span class="caret"></span></a>
+					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Ordinateur')" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Ordinateurs</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=PC-Portable">PC Portable</a></li>
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=PC-de-Bureau">PC de Bureau</a></li>
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=Accessoires-ordinateur">Accessoires</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=PC-Portable')">PC Portable</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=PC-de-Bureau')">PC de Bureau</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Accessoires-ordinateur')">Accessoires</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="\ArchSI_Td_Angular\shop.html?category=TÈlÈphonie" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">T√©l√©phonies</span> <span class="caret"></span></a>
+					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=TÈlÈphonie')" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">T√©l√©phonies</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=SmartPhone">Smart Phone</a></li>
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=Tel-fixe">Tel Fixe</a></li>
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=Accessoires-tÈlÈphonie">Accessoires</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=SmartPhone')">Smart Phone</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Tel-fixe')">Tel Fixe</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Accessoires-tÈlÈphonie')">Accessoires</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="\ArchSI_Td_Angular\shop.html?category=Stockage" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Stockage</span> <span class="caret"></span></a>
+					<a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Stockage')" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Stockage</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=Disque-dur">Disque dur</a></li>
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=ClÈ-USB">Cl√© USB</a></li>
-						<li><a href="\ArchSI_Td_Angular\shop.html?category=Accessoires-stockage">Accessoires</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Disque-dur')">Disque dur</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=ClÈ-USB')">Cl√© USB</a></li>
+						<li><a onclick="getPage('\\ArchSI_Td_Angular\\shop.html?category=Accessoires-stockage')">Accessoires</a></li>
 					</ul>
 				</li>	
 
@@ -66,7 +66,7 @@ session_start();
 
 	    <!-- <li><a href="index.php?url=deconnexion">D√©connexion</a></li> -->
 	  
-	  <li><a href="\ArchSI_Td_Angular\connection.html">Connexion</a></li>
+	  <li><a onclick="getPage('\\ArchSI_Td_Angular\\connection.html')">Connexion</a></li>
 	  
 	
         </ul>
@@ -77,7 +77,7 @@ session_start();
 
 <div class="container">
 
-	<OBJECT DATA="/ArchSI_Td_Angular/rest/shop/infos" STYLE="width:100%;"></OBJECT>
+	<OBJECT id="body" DATA="/ArchSI_Td_Angular/rest/shop/infos" STYLE="width:100%;height:100vh;"></OBJECT>
 
 </div>
 
@@ -124,3 +124,11 @@ session_start();
 </body>
 
 </html>
+
+<script>
+
+function getPage(url)
+{
+   $("OBJECT").replaceWith("<OBJECT id='body' DATA='"+url+"' STYLE='width:100%;height:100vh;'></OBJECT>")
+}
+</script>
