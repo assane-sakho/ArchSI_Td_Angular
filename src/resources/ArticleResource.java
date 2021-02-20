@@ -52,7 +52,7 @@ public class ArticleResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public String getArticleHTML() {
-        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
+        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().stream().filter(a -> a.getId() == id).findFirst().get();
       
     	String result = 
     			"<p>Detail de l'article : </p>" + 
@@ -64,6 +64,7 @@ public class ArticleResource {
     			"    </h4>\r\n" + 
     			"    <h5 class=\"articlePrice\">" + article.getPrice() + "</h5>\r\n" + 
     			"    <p class=\"card-text articleCategory\">" +  article.getCategory().getLibelle() + "</p>\r\n" + 
+    			"    <p>" + article.getId() + "</p>" +
     			"        <button class=\"btn btn-info\">Modifier</button>\r\n" + 
     			"        <button class=\"btn btn-primary\">Supprimer</button>\r\n" + 
     			"    </div>\r\n" + 

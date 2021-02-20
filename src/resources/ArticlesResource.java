@@ -44,7 +44,7 @@ public class ArticlesResource {
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newArticle(@FormParam("libelle") String libelle, @FormParam("brand") String brand, @FormParam("price") Double price, @FormParam("category") Integer category, @FormParam("picture") String picture, @Context HttpServletResponse servletResponse) throws IOException {
+    public void newArticle(@FormParam("libelle") String libelle, @FormParam("brand") String brand, @FormParam("price") Double price, @FormParam("category") String category, @FormParam("picture") String picture, @Context HttpServletResponse servletResponse) throws IOException {
     	
     	
     	ShopDAO shopDAO = ShopDAO.getINSTANCE();
@@ -55,9 +55,13 @@ public class ArticlesResource {
     	if(optionalCategory.isPresent())
     	{
     		
-    		Article article = new Article(shopHighTech.getIdArticle() + 1, libelle, brand, price, optionalCategory.get(), picture);
+    		Article article = new Article(shopHighTech.getIdArticle(), libelle, brand, price, optionalCategory.get(), picture);
+    		
+    		//System.out.println("avant : " + shopHighTech.getIdArticle());
             
             ShopDAO.getINSTANCE().getBoutique().addArticle(article);
+            
+            //System.out.println("apres : " + shopHighTech.getIdArticle());
             
             //redirection vers listes des articles.
             servletResponse.sendRedirect("../admin.html");

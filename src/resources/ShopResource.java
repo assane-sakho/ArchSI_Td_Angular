@@ -80,7 +80,7 @@ public class ShopResource {
     	String baseArticle = 
 	    			"<div class=\"card h-100\">\r\n" + 
 	    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"#articlePicture\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
-	    			"  <input type=\"hidden\" id=\"articleId\" value=\"#articleId\"/>\r\n" + 
+	    			"  <input id=\"articleId\" value=\"#articleId\"/>\r\n" + 
 	    			" <div class=\"card-body\">\r\n" + 
 	    			"    <h4 class=\"card-title\">\r\n" + 
 	    			"        <a href=\"\\ArchSI_Td_Angular\\rest\\articles\\#articleId\" class=\"articleName\">#articleName</a>\r\n" + 

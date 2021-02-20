@@ -93,8 +93,12 @@ public class ShopDAO {
         shopHighTech.addArticle(ordi1);
 
         
-        Article ordi2 = new Article(2, "Ordi de bureau 2", "Asus", 559.99, ordinateurCategory.get(), "https://pic.clubic.com/v1/images/1795260/raw?fit=max&width=1200&hash=8091366f8bb7f6580b818f2da208d4dbe643ca22");
+        Article ordi2 = new Article(3, "Ordi de bureau 2", "Asus", 559.99, ordinateurCategory.get(), "https://pic.clubic.com/v1/images/1795260/raw?fit=max&width=1200&hash=8091366f8bb7f6580b818f2da208d4dbe643ca22");
         shopHighTech.addArticle(ordi2);
+        
+        Optional<Category> telephonieCategory = shopHighTech.getCategory("telephonie");
+        Article tel1 = new Article(4, "Telephone fixe", "Telecom", 299.99, telephonieCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
+        shopHighTech.addArticle(tel1);
     }
 
     public static ShopDAO getINSTANCE()
