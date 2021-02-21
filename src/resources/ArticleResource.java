@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -23,6 +24,7 @@ import dao.ShopDAO;
 import model.impl.Article;
 import model.impl.Category;
 import model.impl.Shop;
+
 
 public class ArticleResource {
 	 @Context
@@ -85,76 +87,36 @@ public class ArticleResource {
     }
     
     
+//Modifier un article
     
-    
-    //Modifier un article
-    
+    @Path("/{id}")
     @PUT
     @Produces(MediaType.TEXT_HTML)
-    @Path("/update")
-    public void updateArticle(@FormParam("id") Integer id, @FormParam("libelle") String libelle, @FormParam("brand") String brand, @FormParam("price") Double price, @FormParam("category") Integer category, @FormParam("picture") String picture, @Context HttpServletResponse servletResponse) throws IOException {
-    	
-    	Response res;
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateArticle()
+    {
     	ShopDAO shopDAO = ShopDAO.getINSTANCE();
-        Shop shopHighTech = shopDAO.getBoutique();
-    	Optional<Category> optionalCategory = shopHighTech.getCategory(category);
+    	Shop shopHighTech = shopDAO.getBoutique();
     	
-    	
-    	if(optionalCategory.isPresent())
+    	Article articleToEdit = shopHighTech.getArticleById(id).get();
+    	if(articleToEdit == null)
     	{
-    		
-    		if(shopDAO.getBoutique().getArticleById(id).isPresent())
-            {
-    			Article a = shopDAO.getBoutique().getArticleById(id).get();
-    			a.setLibelle(libelle);
-    			a.setBrand(brand);
-    			a.setPicture(picture);
-    			a.setPrice(price);
-    			
-    	        shopHighTech.updateArticle(a);
-    	        System.out.println("Affichage des articles: \n");
-    	        
-            	res = Response.noContent().build();
-            } else
-            {
-            	System.out.println("Article inexistant");
-            	res = Response.created(uriInfo.getAbsolutePath()).build();
-            }
-           
+    		throw new RuntimeException("Update: Article avec " + id +  " non trouve");
     	}
     	else
     	{
-    		//System.out.println("Catégorie inexistant");
-    		servletResponse.sendRedirect("../AjoutArticle.html");
+    		//shopHighTech.updateArticle(article);
+    		articleToEdit.setLibelle("s");
+    		articleToEdit.setBrand("s");
+    		Optional<Category> optionalCategory = shopHighTech.getCategory("disque-dur");
+    		articleToEdit.setCategorie(optionalCategory.get());
+    		articleToEdit.setPicture("s");
+    		articleToEdit.setPrice(9.0);
+    		
+    		System.out.println("Update article " + articleToEdit.getId() + "from shop success");
     	}
     	
-        
     }
     
     
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response putArticle(JAXBElement<Article> article) {
-    	System.out.println(article.toString());
-    	Article a = article.getValue();
-        return putAndGetResponse(a);
-    }
-    
-    private Response putAndGetResponse(Article article) {
-        
-    	Response res;
-        ShopDAO shopDAO = ShopDAO.getINSTANCE();
-        
-        if(shopDAO.getBoutique().getArticleById(article.getId()).isPresent())
-        {
-        	res = Response.noContent().build();
-        } else
-        {
-        	res = Response.created(uriInfo.getAbsolutePath()).build();
-        }
-        
-        
-        shopDAO.getBoutique().updateArticle(article);
-        return res;
-    }
 }

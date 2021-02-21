@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -32,19 +35,19 @@ public class ArticlesResource {
     @Context
     Request request;
     
-    @Path("{article}")
-    @Produces(MediaType.TEXT_HTML)
-    public ArticleResource getArticle(@PathParam("article") Integer id) {
-        return new ArticleResource(uriInfo, request, id);
-    }
     
     
-    
-    
+    //ADD ARTICLE
     @POST
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newArticle(@FormParam("libelle") String libelle, @FormParam("brand") String brand, @FormParam("price") Double price, @FormParam("category") String category, @FormParam("picture") String picture, @Context HttpServletResponse servletResponse) throws IOException {
+    public void newArticle(@FormParam("libelle") String libelle, 
+    		@FormParam("brand") String brand, 
+    		@FormParam("price") Double price, 
+    		@FormParam("category") String category, 
+    		@FormParam("picture") String picture, 
+    		@Context HttpServletRequest request, 
+    		@Context HttpServletResponse servletResponse) throws IOException, ServletException {
     	
     	
     	ShopDAO shopDAO = ShopDAO.getINSTANCE();
@@ -70,10 +73,19 @@ public class ArticlesResource {
     	else
     	{
     		//System.out.println("Catégorie inexistant");
-    		servletResponse.sendRedirect("../AjoutArticle.html");
+    		String msg = "Catégorie inexistant";
+    		request.setAttribute("msg", msg);
+    		request.getRequestDispatcher("../AjoutArticle.html").forward(request, servletResponse);
+    		//servletResponse.sendRedirect("../AjoutArticle.html");
+    		
     	}
-    	
-        
+    }
+    
+    
+    
+    @Path("{article}")
+    public ArticleResource getTodo(@PathParam("article") Integer id) {
+        return new ArticleResource(uriInfo, request, id);
     }
 }
 

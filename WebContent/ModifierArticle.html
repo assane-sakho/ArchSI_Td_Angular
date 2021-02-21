@@ -1,4 +1,4 @@
-<form action="../ArchSI_Td_Angular/rest/article/update" method="POST">
+<form action="../ArchSI_Td_Angular/rest/article" method="POST">
 
 <label for="id">Article Id</label>
   <input name="id" />
@@ -12,7 +12,7 @@
   <input type="number" NAME="price">
   <br/>
   
-  <label for="category">Category ID</label>
+  <label for="category">Category name</label>
   <input type="text" NAME="category">
   <br/>
   
@@ -20,7 +20,7 @@
   <input type="text" NAME="picture">
   <br/>
   
-  
+  <input type="hidden" name="_method" value="put">
   <input type="submit" value="Submit" />
 </form>
 
