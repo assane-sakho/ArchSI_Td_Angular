@@ -24,11 +24,12 @@ public class Shop extends ComponentImpl{
         this.idArticle = this.getArticles().size();
     }
 
-    public Shop addArticle(Article article)
+    public Article addArticle(String libelle, String brand, Double price, Category category, String picture)
     {
-    	article.getCategory().addArticle(article);
+    	Article article = new Article(idArticle, libelle, brand, price, category, picture);
+    	category.addArticle(article);
     	idArticle++;
-        return this;
+        return article;
     }
 
     public Shop updateArticle(Article article)
@@ -55,7 +56,7 @@ public class Shop extends ComponentImpl{
     }
 
     public List<Article> getArticles() {
-        return categories.stream().flatMap(c -> c.getArticles().stream()).collect(Collectors.toList());
+        return categories.stream().flatMap(c -> c.getArticles().stream()).distinct().collect(Collectors.toList());
     }
 
     public String getDescription() {
@@ -174,8 +175,8 @@ public class Shop extends ComponentImpl{
 				"- Decription : " + description  + "\n" +
 				"- Adresse : " + address  + "\n" +
     			"- Contact : " + contact  + "\n" +
-				"- Catï¿½gories : " + getMainCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", ")) + "\n" +
-				"- Sous-catï¿½gories : " + getSubCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", "))
+				"- Catégories : " + getMainCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", ")) + "\n" +
+				"- Sous-catégories : " + getSubCategories().stream().map(Category::getLibelle).collect(Collectors.joining(", "))
     			;
     }
 }

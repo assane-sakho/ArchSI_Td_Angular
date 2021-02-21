@@ -81,24 +81,24 @@ public class ShopDAO {
         shopHighTech.addAdmins(admins);
        
         Optional<Category> cleUsbCategory = shopHighTech.getCategory("cle-usb");
-        Article cleUsbSandisk = new Article(0, "clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
-        shopHighTech.addArticle(cleUsbSandisk);
+   
+        shopHighTech.addArticle("clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
        
         Optional<Category> disquedurCategory = shopHighTech.getCategory("disque-dur");
-        Article disquedur1 = new Article(1, "disque", "disque", 9.99, disquedurCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
-        shopHighTech.addArticle(disquedur1);
+
+        shopHighTech.addArticle("Disque dur 1TO", "Toshiba", 9.99, disquedurCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
         
         Optional<Category> ordinateurCategory = shopHighTech.getCategory("pc-portable");
-        Article ordi1 = new Article(2, "Ordi de bureau", "HP", 559.99, ordinateurCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
-        shopHighTech.addArticle(ordi1);
+        shopHighTech.addArticle("Ordi portable 15'6 pouces", "HP", 559.99, ordinateurCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
 
         
-        Article ordi2 = new Article(3, "Ordi de bureau 2", "Asus", 559.99, ordinateurCategory.get(), "https://pic.clubic.com/v1/images/1795260/raw?fit=max&width=1200&hash=8091366f8bb7f6580b818f2da208d4dbe643ca22");
-        shopHighTech.addArticle(ordi2);
+        Optional<Category> ordinateurBureauCategory = shopHighTech.getCategory("pc-de-bureau");
+
+        shopHighTech.addArticle("Ordi de bureau", "Asus", 559.99, ordinateurBureauCategory.get(), "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTqwaVHzAkND3ma2PVSRgj4xfAbspl5fxce2QUTzir9I3bJuH8WiWajvhPh5dixFikvtWmpuxLTPB7d7HcTCJgjurO4lfOIO8aiCUHPfWF0AgpXW9QcG3jj&usqp=CAE");
         
         Optional<Category> telephonieCategory = shopHighTech.getCategory("telephonie");
-        Article tel1 = new Article(4, "Telephone fixe", "Telecom", 299.99, telephonieCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
-        shopHighTech.addArticle(tel1);
+        
+        shopHighTech.addArticle("Téléphone fixe", "Telecom", 299.99, telephonieCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
     }
 
     public static ShopDAO getINSTANCE()
