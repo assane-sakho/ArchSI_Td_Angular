@@ -32,6 +32,12 @@ public class Shop extends ComponentImpl{
         return article;
     }
 
+    public Article addArticle(Article article)
+    {
+    	article.getCategory().addArticle(article);
+    	idArticle++;
+        return article;
+    }
     public Shop updateArticle(Article article)
     {
     	article.getCategory().updateArticle(article);
