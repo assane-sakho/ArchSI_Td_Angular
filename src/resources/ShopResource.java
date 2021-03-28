@@ -48,14 +48,14 @@ public class ShopResource {
     @Path("/{category}/articles")
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public String getArticlesByCategory(@PathParam("category") String categoryLibelle) {
+    public List<Article> getArticlesByCategory(@PathParam("category") String categoryLibelle) {
     	
         ShopDAO shopDAO = ShopDAO.getINSTANCE();
         Shop shopHighTech = shopDAO.getBoutique();
 
         List<Article> articles = shopHighTech.getArticlesByCategory(categoryLibelle);
 
-        return "[" +  articles.stream().map(article -> article.toString()).collect(Collectors.joining(",")) + "]";
+        return articles;
     }
     
     @Path("/{category}/articles")
