@@ -27,21 +27,7 @@ public class ShopResource {
 	
 	@Context
 	UriInfo uriInfo;
-	
-	 
-	@POST
-    @Produces(MediaType.TEXT_HTML)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newConnexion(@FormParam("login") String login,
-            @FormParam("mdp") String mdp,
-            @Context HttpServletResponse servletResponse) throws IOException {
-		if(ShopDAO.getINSTANCE().getBoutique().getAdmins().stream().filter(a -> (a.getLogin().equals(login)) && (a.getMdp().equals(mdp))).findFirst().isPresent()) {
-			servletResponse.sendRedirect("../admin.html");
-		}else {
-			servletResponse.sendRedirect("../connection.html");
-		}
 
-    }
 	
 	 @Path("/infos")
 	 @GET
