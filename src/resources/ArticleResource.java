@@ -1,6 +1,7 @@
 package resources;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -42,39 +43,18 @@ public class ArticleResource {
     
     //Application integration
     @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Article getArticle() {
-        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().get(id);
-        if(article==null)
+    	List<Article> articles = ShopDAO.getINSTANCE().getBoutique().getArticles();
+    	
+        Optional<Article> oArticle = articles.stream().filter(a -> a.getId() == id).findFirst();
+        
+        if(!oArticle.isPresent())
             throw new RuntimeException("Get: article with " + id +  " not found");
-        return article;
+        
+        return oArticle.get();
     }
 
-    // for the browser
-    @GET
-    @Produces(MediaType.TEXT_HTML)
-    public String getArticleHTML() {
-        Article article = ShopDAO.getINSTANCE().getBoutique().getArticles().stream().filter(a -> a.getId() == id).findFirst().get();
-      
-    	String result = 
-    			"<p>Detail de l'article : </p>" + 
-    			"<div class=\"card h-100\">\r\n" + 
-    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"" + article.getPicture() + "\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
-    			"    <div class=\"card-body\">\r\n" + 
-    			"    <h4 class=\"card-title\">\r\n" + 
-    			"        <a href=\"#\" class=\"articleName\">" + article.getLibelle() + "</a>\r\n" + 
-    			"    </h4>\r\n" + 
-    			"    <h5 class=\"articlePrice\">" + article.getPrice() + "</h5>\r\n" + 
-    			"    <p class=\"card-text articleCategory\">" +  article.getCategory().getLibelle() + "</p>\r\n" + 
-    			"    <p>" + article.getId() + "</p>" +
-    			"        <button class=\"btn btn-info\">Modifier</button>\r\n" + 
-    			"        <button class=\"btn btn-primary\">Supprimer</button>\r\n" + 
-    			"    </div>\r\n" + 
-			"</div>";
-
-        return result;
-    }
-    
     @DELETE
     public void deleteArticle() {
     	//categoryTelephonie/articles/1
