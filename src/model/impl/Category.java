@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Category extends ComponentImpl implements IComposite<Category> {
     private Optional<Category> categorieParent;
     private List<Category> sousCategories;
@@ -66,11 +70,12 @@ public class Category extends ComponentImpl implements IComposite<Category> {
         	sousCategories.add(child);
     }
     
+    @JsonValue
     @Override
     public String toString()
     {
-    	String p = categorieParent.isPresent() ? " (parent "+ categorieParent.toString()  + ")": "";
-    	return libelle +  p;			
+    	String p = categorieParent.isPresent() ? categorieParent.get().toString()  + " > ": "";
+    	return p + libelle;			
     }
     
     public void addArticle(Article article)

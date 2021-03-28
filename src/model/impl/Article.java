@@ -61,20 +61,6 @@ public class Article extends ComponentImpl{
         return category;
     }
     
-    
-    @Override
-    public String toString()
-    {
-    	return "{ " + 
-					"\"id\" :\"" + id + "\", " +
-					"\"libelle\" :\"" + libelle + "\", " +
-    				"\"price\" : \"" + price+ "\", " +
-    				"\"brand\" : \"" + brand+ "\", " +
-    				"\"category\" : \"" + category.getLibelle() + "\", " +
-    				"\"picture\" : \"" + picture+ "\"" +
-    			"}";
-    }
-    
     @Override 
     public boolean equals(Object obj) { 
         if (!(obj instanceof Article) || obj == null)
