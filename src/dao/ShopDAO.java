@@ -38,6 +38,7 @@ public class ShopDAO {
         admins.add(new Administrator(1,"Brochado","Alexandre","test","test"));
         admins.add(new Administrator(2,"DAS","Rahul","test2","test2"));
         admins.add(new Administrator(3,"Mouzouri","Ilhame","test3","test3"));
+        admins.add(new Administrator(3,"Sakho","Assane","assanesakho@htstore.com","assane123456"));
         
 
         List<Category> categories = new ArrayList<>();
