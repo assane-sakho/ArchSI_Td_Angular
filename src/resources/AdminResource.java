@@ -43,9 +43,6 @@ public class AdminResource {
 		String login = map.get("login").toString();
 		String mdp = map.get("mdp").toString();
 		
-		System.out.println(login);
-		System.out.println(mdp);
-		
 		List<Administrator> admins = ShopDAO.getINSTANCE().getBoutique().getAdmins();
 		
 		if(admins.stream().filter(a -> (a.getLogin().equals(login)) && (a.getMdp().equals(mdp))).findFirst().isPresent()) {
