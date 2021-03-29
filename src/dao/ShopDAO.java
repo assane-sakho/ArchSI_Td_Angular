@@ -35,10 +35,10 @@ public class ShopDAO {
         
         List<Administrator> admins = new ArrayList<>();
         
-        admins.add(new Administrator(1,"Brochado","Alexandre","test","test"));
-        admins.add(new Administrator(2,"DAS","Rahul","test2","test2"));
-        admins.add(new Administrator(3,"Mouzouri","Ilhame","test3","test3"));
-        admins.add(new Administrator(3,"Sakho","Assane","assanesakho@htstore.com","assane123456"));
+        admins.add(new Administrator(1,"Brochado","Alexandre","alexandre.brochado@htstore.com","adminadmin"));
+        admins.add(new Administrator(2,"DAS","Rahul","rahul.das@htstore.com","adminadmin"));
+        admins.add(new Administrator(3,"Mouzouri","Ilhame","ilhame.mouzouri@htstore.com","adminadmin"));
+        admins.add(new Administrator(3,"Sakho","Assane","assane.sakho@htstore.com","adminadmin"));
         
 
         List<Category> categories = new ArrayList<>();
@@ -84,13 +84,19 @@ public class ShopDAO {
         Optional<Category> cleUsbCategory = shopHighTech.getCategory("cle-usb");
    
         shopHighTech.addArticle("clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
-       
+        shopHighTech.addArticle("clé usb 32 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        shopHighTech.addArticle("clé usb 64 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+
         Optional<Category> disquedurCategory = shopHighTech.getCategory("disque-dur");
 
         shopHighTech.addArticle("Disque dur 1TO", "Toshiba", 9.99, disquedurCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
-        
+        shopHighTech.addArticle("Disque dur 2TO", "Toshiba", 9.99, disquedurCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        shopHighTech.addArticle("Disque dur 3TO", "Toshiba", 9.99, disquedurCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+
         Optional<Category> ordinateurCategory = shopHighTech.getCategory("pc-portable");
         shopHighTech.addArticle("Ordi portable 15'6 pouces", "HP", 559.99, ordinateurCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
+        shopHighTech.addArticle("Ordi portable 18'6 pouces", "HP", 559.99, ordinateurCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
+        shopHighTech.addArticle("Ordi portable 13'6 pouces", "HP", 559.99, ordinateurCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
 
         
         Optional<Category> ordinateurBureauCategory = shopHighTech.getCategory("pc-de-bureau");
