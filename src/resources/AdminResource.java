@@ -37,9 +37,6 @@ public class AdminResource {
 			@HeaderParam("mdp") String mdp,
             @Context HttpServletResponse servletResponse) throws IOException {		
 		
-		System.out.println(login);
-		System.out.println(mdp);
-		
 		List<Administrator> admins = ShopDAO.getINSTANCE().getBoutique().getAdmins();
 		
 		if(admins.stream().filter(a -> (a.getLogin().equals(login)) && (a.getMdp().equals(mdp))).findFirst().isPresent()) {

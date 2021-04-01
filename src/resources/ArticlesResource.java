@@ -44,54 +44,6 @@ public class ArticlesResource {
     @Context
     Request request;
     
-    
-    /*
-    
-    //ADD ARTICLE
-    @POST
-    @Produces(MediaType.TEXT_HTML)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newArticle(@FormParam("libelle") String libelle, 
-    		@FormParam("brand") String brand, 
-    		@FormParam("price") Double price, 
-    		@FormParam("category") String category, 
-    		@FormParam("picture") String picture, 
-    		@Context HttpServletRequest request, 
-    		@Context HttpServletResponse servletResponse) throws IOException, ServletException {
-    	
-    	
-    	ShopDAO shopDAO = ShopDAO.getINSTANCE();
-        Shop shopHighTech = shopDAO.getBoutique();
-    	Optional<Category> optionalCategory = shopHighTech.getCategory(category);
-    	
-    	
-    	if(optionalCategory.isPresent())
-    	{
-    		
-    		Article article = new Article(shopHighTech.getIdArticle(), libelle, brand, price, optionalCategory.get(), picture);
-    		
-    		//System.out.println("avant : " + shopHighTech.getIdArticle());
-            
-            ShopDAO.getINSTANCE().getBoutique().addArticle(article);
-            
-            //System.out.println("apres : " + shopHighTech.getIdArticle());
-            
-            //redirection vers listes des articles.
-            servletResponse.sendRedirect("../admin.html");
-           
-    	}
-    	else
-    	{
-    		//System.out.println("Catégorie inexistant");
-    		String msg = "Catégorie inexistant";
-    		request.setAttribute("msg", msg);
-    		request.getRequestDispatcher("../AjoutArticle.html").forward(request, servletResponse);
-    		//servletResponse.sendRedirect("../AjoutArticle.html");
-    		
-    	}
-    }
-    */
-    
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -106,29 +58,20 @@ public class ArticlesResource {
         	 
              out.append(line);
          }
-         System.out.println(out.toString());
          ObjectMapper mapper = new ObjectMapper();
 
          Map<String, String> map = new HashMap<String, String>();
 
          map = mapper.readValue(out.toString(), new TypeReference<Map<String, String>>(){});
          
-         System.out.println(map.get("category"));
-         
          String libelle = map.get("libelle");
          String brand = map.get("brand");
          Category category = shopDAO.getBoutique().getCategory(map.get("category")).get();
          
-         
-         
          String picture = map.get("picture");
          Double price = Double.valueOf(map.get("price"));
          
-
-         
          Article article = shopDAO.getBoutique().addArticle(libelle, brand, price, category, picture);
-         
-         
 
          reader.close();
          

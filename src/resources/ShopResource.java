@@ -59,7 +59,6 @@ public class ShopResource {
 
         return articles;
     }
-    
    
     
     // Return the list of the articles from a category
@@ -70,9 +69,7 @@ public class ShopResource {
         ShopDAO shopDAO = ShopDAO.getINSTANCE();
         Shop shopHighTech = shopDAO.getBoutique();
         
-
         return shopHighTech.getSubCategories();
     }
-   
    
 }

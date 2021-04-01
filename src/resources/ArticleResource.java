@@ -70,7 +70,6 @@ public class ArticleResource {
     	//categoryTelephonie/articles/1
         ShopDAO shopDAO = ShopDAO.getINSTANCE();
         Shop shopHighTech = shopDAO.getBoutique().deleteArticle(id);
-        System.out.println("Delete shop size="+shopHighTech.getArticles().size());
 
         if(shopHighTech==null)
             throw new RuntimeException("Delete: Article avec " + id +  " non trouve");
@@ -95,7 +94,6 @@ public class ArticleResource {
     	
     	if(articleToEdit == null)
     	{
-    		System.out.println("Article non trouvé");
     		throw new RuntimeException("Update: Article avec " + id +  " non trouve");
     	}
     	else
