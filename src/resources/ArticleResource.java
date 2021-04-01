@@ -1,9 +1,16 @@
 package resources;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
@@ -14,12 +21,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Context;	
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.JAXBElement;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.ShopDAO;
 import model.impl.Article;
@@ -69,31 +79,76 @@ public class ArticleResource {
     
 //Modifier un article
     
-    @Path("/{id}")
+    
     @PUT
-    @Produces(MediaType.TEXT_HTML)
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public void updateArticle()
+    public Article updateArticle(@Context HttpServletRequest request, InputStream requestBody) throws IOException, ServletException
     {
     	ShopDAO shopDAO = ShopDAO.getINSTANCE();
     	Shop shopHighTech = shopDAO.getBoutique();
     	
     	Article articleToEdit = shopHighTech.getArticleById(id).get();
+    	
+    	//System.out.println(articleToEdit.getId());
+    	
+    	
     	if(articleToEdit == null)
     	{
+    		System.out.println("Article non trouvé");
     		throw new RuntimeException("Update: Article avec " + id +  " non trouve");
     	}
     	else
     	{
-    		//shopHighTech.updateArticle(article);
-    		articleToEdit.setLibelle("s");
-    		articleToEdit.setBrand("s");
-    		Optional<Category> optionalCategory = shopHighTech.getCategory("disque-dur");
-    		articleToEdit.setCategorie(optionalCategory.get());
-    		articleToEdit.setPicture("s");
-    		articleToEdit.setPrice(9.0);
+    		//System.out.println("article trouvé : " + id);
     		
-    		System.out.println("Update article " + articleToEdit.getId() + "from shop success");
+    		BufferedReader reader = new BufferedReader(new InputStreamReader(requestBody));
+            StringBuilder out = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+           	 
+                out.append(line);
+            }
+            //System.out.println(out.toString());
+            
+            ObjectMapper mapper = new ObjectMapper();
+
+            Map<String, String> map = new HashMap<String, String>();
+
+            map = mapper.readValue(out.toString(), new TypeReference<Map<String, String>>(){});
+            
+            if(map.get("libelle") != "") {
+            	articleToEdit.setLibelle(map.get("libelle"));
+            }
+            if(map.get("brand") != "")
+            {
+            	articleToEdit.setBrand(map.get("brand"));
+            }
+            if(map.get("picture") != "")
+            {
+            	articleToEdit.setPicture(map.get("picture"));
+            }
+            if(map.get("price") != "")
+            {
+            	articleToEdit.setPrice(Double.valueOf(map.get("price")));
+            }
+            if(map.get("category") != "")
+            {
+            	articleToEdit.setCategorie(shopDAO.getBoutique().getCategory(map.get("category")).get());
+            }
+            
+            
+           /*
+            System.out.println(articleToEdit.getId());
+            System.out.println(articleToEdit.getLibelle());
+            System.out.println(articleToEdit.getBrand());
+            System.out.println(articleToEdit.getPicture());
+            System.out.println(articleToEdit.getPrice());
+            System.out.println(articleToEdit.getCategory());
+            */
+            
+            return articleToEdit;
+    		
     	}
     	
     }

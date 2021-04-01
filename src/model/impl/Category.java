@@ -14,6 +14,8 @@ public class Category extends ComponentImpl implements IComposite<Category> {
     private Optional<Category> categorieParent;
     private List<Category> sousCategories;
     private List<Article> articles;
+    
+    
 
     public Category(int id, String libelle) {
         super(id, libelle);

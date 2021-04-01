@@ -59,31 +59,7 @@ public class ShopResource {
         return articles;
     }
     
-    // Return the list of the articles from a category
-    @Path("/categories")
-    @GET
-    @Produces({ MediaType.TEXT_HTML })
-    public String getCategoriesHtml() {
-        ShopDAO shopDAO = ShopDAO.getINSTANCE();
-        Shop shopHighTech = shopDAO.getBoutique();
-        
-        StringBuilder sb = new StringBuilder();
-      
-    	shopHighTech.getMainCategories().forEach(mainCategory -> {
-    		sb.append("<option disabled>-- " +  mainCategory.getLibelle() + " --</option>");
-    		mainCategory.getChildren().forEach(category -> {
-        		sb.append("<option value=" + category.getLibelle() + ">" + category.getLibelle() + "</option>");
-
-    		});
-    	});
-    	
-
-
-    	  String options = sb.toString();
-      	String result = "<select class=\"form-control\">" + options + "</select>";
-
-        return result;
-    }
+   
     
     // Return the list of the articles from a category
     @Path("/categories")

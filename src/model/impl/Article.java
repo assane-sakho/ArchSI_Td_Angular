@@ -5,7 +5,9 @@ public class Article extends ComponentImpl{
     private Double price;
     protected Category category;
     private String picture;
-
+    
+    public Article() {}
+    
     public Article(int id, String libelle, String brand, Double price, Category category, String picture) {
         super(id, libelle);
         this.libelle = libelle;

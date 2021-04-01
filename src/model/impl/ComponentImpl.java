@@ -3,8 +3,10 @@ package model.impl;
 import model.api.IComponent;
 
 public abstract class ComponentImpl implements IComponent {
-    protected final int id;
+    protected int id;
     protected String libelle;
+    
+    protected ComponentImpl() {}
 
     protected ComponentImpl(int id, String libelle) {
         this.id = id;
