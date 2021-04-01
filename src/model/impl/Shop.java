@@ -121,8 +121,6 @@ public class Shop extends ComponentImpl{
     public List<Article> getArticlesByCategory(String libelle) {
     	List<Article> articlesFiltred = new ArrayList();
     	
-    	System.out.println(libelle);
-    	
     	Optional<Category> optionalCategory = getCategory(libelle);
     	
     	if(optionalCategory.isPresent())
