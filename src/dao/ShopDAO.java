@@ -77,15 +77,15 @@ public class ShopDAO {
 			subCategory.setParent(parent);
         }
 
-        shopHighTech = new Shop(0, "Boutique High tech", "une description", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris");
+        shopHighTech = new Shop(0, "HighTechStore", "Nous sommes une boutique HighTech qui vendons des ordinateur, des téléphones et des appareils de stockage", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris");
         shopHighTech.AddCategories(categories);
         shopHighTech.addAdmins(admins);
        
         Optional<Category> cleUsbCategory = shopHighTech.getCategory("cle-usb");
    
-        shopHighTech.addArticle("clé usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
-        shopHighTech.addArticle("clé usb 32 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
-        shopHighTech.addArticle("clé usb 64 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        shopHighTech.addArticle("clï¿½ usb 16 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        shopHighTech.addArticle("clï¿½ usb 32 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
+        shopHighTech.addArticle("clï¿½ usb 64 - go", "Sandisk", 9.99, cleUsbCategory.get(), "https://static.fnac-static.com/multimedia/Images/FR/MDM/ee/6f/2f/3108846/1540-1/tsp20200718130428/Cle-USB-2-0-Sandisk-Cruzer-Blade-128-Go.jpg");
 
         Optional<Category> disquedurCategory = shopHighTech.getCategory("disque-dur");
 
@@ -105,7 +105,7 @@ public class ShopDAO {
         
         Optional<Category> telephonieCategory = shopHighTech.getCategory("telephonie");
         
-        shopHighTech.addArticle("Téléphone fixe", "Telecom", 299.99, telephonieCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
+        shopHighTech.addArticle("Tï¿½lï¿½phone fixe", "Telecom", 299.99, telephonieCategory.get(), "https://bv-prd-fbi-fr-media.s3.amazonaws.com/pub/media/catalog/product/cache/ef4a54899b4f9d060853d6e60ec5e0f4/2/b/2b7337ee2176141b17179c36beeb1e0d11b41404_400001956.jpg");
     }
 
     public static ShopDAO getINSTANCE()

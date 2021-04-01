@@ -32,15 +32,16 @@ public class ShopResource {
 	
 	 @Path("/infos")
 	 @GET
-	 @Produces({ MediaType.TEXT_HTML })
-	 public String getInfoShop() {
+	 @Produces({ MediaType.APPLICATION_JSON })
+	 public List<String> getInfoShop() {
 		 	ShopDAO shopDAO = ShopDAO.getINSTANCE();
 		 	Shop shopHighTech = shopDAO.getBoutique();
 		 	List<String> infoShop=new ArrayList<>();
+		 	infoShop.add(shopHighTech.getLibelle());
 		 	infoShop.add(shopHighTech.getDescription());
 		 	infoShop.add(shopHighTech.getAddress());
 		 	infoShop.add(shopHighTech.getContact());
-		 	return infoShop.stream().collect(Collectors.joining(", "));
+		 	return infoShop;
 	 }
 	 @Context
 	 Request request;
