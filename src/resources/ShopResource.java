@@ -20,6 +20,7 @@ import javax.ws.rs.core.UriInfo;
 
 import dao.ShopDAO;
 import model.impl.Article;
+import model.impl.Category;
 import model.impl.Shop;
 
 @Path("/shop")
@@ -58,43 +59,43 @@ public class ShopResource {
         return articles;
     }
     
-    @Path("/{category}/articles")
+    // Return the list of the articles from a category
+    @Path("/categories")
     @GET
     @Produces({ MediaType.TEXT_HTML })
-    public String getArticlesByCategory2(@PathParam("category") String categoryLibelle) {
-    	
-    	String baseArticle = 
-	    			"<div class=\"card h-100\">\r\n" + 
-	    			"    <a href=\"#\"><img class=\"card-img-top articleImage\" src=\"#articlePicture\" alt=\"\" width=\"450\" height=\"400\"></a>\r\n" + 
-	    			"  <input id=\"articleId\" value=\"#articleId\"/>\r\n" + 
-	    			" <div class=\"card-body\">\r\n" + 
-	    			"    <h4 class=\"card-title\">\r\n" + 
-	    			"        <a href=\"\\ArchSI_Td_Angular\\rest\\articles\\#articleId\" class=\"articleName\">#articleName</a>\r\n" + 
-	    			"    </h4>\r\n" + 
-	    			"    <h5 class=\"articlePrice\">#articlePrice</h5>\r\n" + 
-	    			"    <p class=\"card-text articleCategory\">#articleCategory</p>\r\n" + 
-	    			"        <button class=\"btn btn-info\">Modifier</button>\r\n" + 
-	    			"        <button class=\"btn btn-primary\">Supprimer</button>\r\n" + 
-	    			"    </div>\r\n" + 
-    			"</div>";
+    public String getCategoriesHtml() {
         ShopDAO shopDAO = ShopDAO.getINSTANCE();
         Shop shopHighTech = shopDAO.getBoutique();
-
-        List<Article> articles = shopHighTech.getArticlesByCategory(categoryLibelle);
-        String result = "";
-        for(Article arcticle : articles)
-        {
-        	String tmp = baseArticle;
-        	tmp = tmp.replace("#articleId", "" + arcticle.getId())
-        			.replace("#articlePicture", arcticle.getPicture())
-        			.replace("#articleName", arcticle.getLibelle())
-        			.replace("#articlePrice", "" + arcticle.getPrice())
-        			.replace("#articleCategory", arcticle.getCategory().getLibelle());
-        	result +=tmp;
-        }
         
-        System.out.println(result);
+        StringBuilder sb = new StringBuilder();
+      
+    	shopHighTech.getMainCategories().forEach(mainCategory -> {
+    		sb.append("<option disabled>-- " +  mainCategory.getLibelle() + " --</option>");
+    		mainCategory.getChildren().forEach(category -> {
+        		sb.append("<option value=" + category.getLibelle() + ">" + category.getLibelle() + "</option>");
+
+    		});
+    	});
+    	
+
+
+    	  String options = sb.toString();
+      	String result = "<select class=\"form-control\">" + options + "</select>";
 
         return result;
     }
+    
+    // Return the list of the articles from a category
+    @Path("/categories")
+    @GET
+    @Produces({ MediaType.APPLICATION_JSON })
+    public List<Category> getCategoriesJson() {
+        ShopDAO shopDAO = ShopDAO.getINSTANCE();
+        Shop shopHighTech = shopDAO.getBoutique();
+        
+
+        return shopHighTech.getSubCategories();
+    }
+   
+   
 }

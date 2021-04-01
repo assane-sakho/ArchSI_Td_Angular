@@ -94,7 +94,9 @@ public class Shop extends ComponentImpl{
 
     public List<Category> getSubCategories()
     {
-        return categories.stream().filter(c -> c.getChildren().stream().count() == 0).collect(Collectors.toList());
+    	List<Category> categoryList  = getMainCategories();
+    	List<Category> result = categoryList.stream().map(Category::getChildren).flatMap(List::stream).collect(Collectors.toList());
+        return result;
     }
     
     public Optional<Category> getCategory(Integer categoryId)
