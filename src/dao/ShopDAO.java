@@ -77,7 +77,7 @@ public class ShopDAO {
 			subCategory.setParent(parent);
         }
 
-        shopHighTech = new Shop(0, "Boutique High tech", "une description", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris");
+        shopHighTech = new Shop(0, "Boutique High tech", "Nous sommes une boutique HighTech qui vendons des ordinateur, des téléphones et des appareils de stockage", "06.01.02.14.57 - boutique-ht@gmail.com", "2 rue des boutiques - 75009 - Paris");
         shopHighTech.AddCategories(categories);
         shopHighTech.addAdmins(admins);
         
